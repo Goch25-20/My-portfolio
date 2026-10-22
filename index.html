@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Goch Thiong Garang Akot — Entrepreneurial Leadership, Consulting &amp; Community</title>
+  <meta name="description" content="Personal site of Goch Thiong Garang Akot — entrepreneurial leadership student, consultant and community organizer at African Leadership University, Kigali." />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;0,6..72,700;1,6..72,400;1,6..72,600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- =====================================================
+       HEADER — sticky, light cream bar with avatar + nav + CTA
+  ===================================================== -->
+  <header class="site-header" id="site-header">
+
+    <!-- Flag stripe kept at very top: black | red | green -->
+    <div class="flag-stripe" aria-hidden="true">
+      <span class="flag-black"></span><span class="flag-gap"></span>
+      <span class="flag-red"></span><span class="flag-gap"></span>
+      <span class="flag-green"></span>
+    </div>
+
+    <div class="hdr-inner container">
+
+      <!-- Left: circular avatar linking to hero -->
+      <a href="#hero" class="nav-avatar" aria-label="Go to top">
+        <img src="images/portrait.JPG"
+             alt="Goch Thiong Garang Akot"
+             onerror="this.style.display='none'" />
+      </a>
+
+      <!-- Centre: navigation links -->
+      <nav class="main-nav" id="main-nav" aria-label="Main navigation">
+        <ul class="nav-list" id="nav-list">
+          <li><a href="#hero"    class="nav-link">Home</a></li>
+          <li><a href="#about"   class="nav-link">About</a></li>
+          <li><a href="#work"    class="nav-link">Work</a></li>
+          <li><a href="#journey" class="nav-link">Journey</a></li>
+          <li><a href="#skills"    class="nav-link">Skills</a></li>
+          <li><a href="#education" class="nav-link">Education</a></li>
+          <li><a href="#contact"   class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+
+      <!-- Right: CV icon + CTA button + hamburger -->
+      <div class="hdr-right">
+        <!-- Download / CV icon -->
+        <a href="#" class="hdr-icon-btn" aria-label="Download CV" title="Download CV">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="2"
+               stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+            <polyline points="14 2 14 8 20 8"/>
+            <line x1="16" y1="13" x2="8" y2="13"/>
+            <line x1="16" y1="17" x2="8" y2="17"/>
+            <polyline points="10 9 9 9 8 9"/>
+          </svg>
+        </a>
+
+        <!-- Get in touch CTA -->
+        <a href="#contact" class="btn btn-nav-cta">Get in touch</a>
+
+        <!-- Mobile hamburger -->
+        <button class="menu-btn" id="menu-btn"
+                aria-expanded="false" aria-controls="nav-list"
+                aria-label="Open navigation menu">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <main>
+
+    <!-- =====================================================
+         1. HERO — dark, two columns
+    ===================================================== -->
+    <section id="hero" class="hero">
+      <div class="container hero-grid">
+
+        <!-- Left: text -->
+        <div class="hero-text">
+          <!-- Kicker line: nationality + context -->
+          <span class="hero-kicker">South Sudanese &nbsp;·&nbsp; ALU Kigali &nbsp;·&nbsp; Entrepreneurial Leadership</span>
+          <h1 class="hero-name">Goch Thiong<br>Garang Akot</h1>
+          <p class="hero-tagline">"Stoic through it all."</p>
+          <p class="hero-role">Entrepreneurial leadership student,<br>consultant and community organizer</p>
+          <p class="hero-intro">I am a BSc student in Entrepreneurial Leadership at African Leadership University in Kigali. I lead the South Sudanese Students' Association, consult on business problems and support programs that help young people learn, build and lead.</p>
+          <div class="hero-btns">
+            <a href="#work"    class="btn btn-solid">See my work</a>
+            <a href="#contact" class="btn btn-ghost">Get in touch</a>
+          </div>
+
+          <!-- Social media handles — visible immediately on landing -->
+          <div class="hero-social" aria-label="Social media profiles">
+            <a href="https://www.linkedin.com/in/goch-thiong/?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BNzYOG6jDTwe2KNGwpO6u%2Bg%3D%3D"
+               target="_blank" rel="noopener noreferrer"
+               class="social-link" aria-label="LinkedIn profile">
+              <!-- LinkedIn icon -->
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+              </svg>
+              <span>LinkedIn</span>
+            </a>
+            <!-- Add your other handles below. Replace # with your real URL. -->
+            <a href="https://x.com/gochthiongul" class="social-link" aria-label="X / Twitter profile"
+               target="_blank" rel="noopener noreferrer">
+              <!-- X (Twitter) icon -->
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.737-8.835L2.25 2.25h6.953l4.258 5.628L18.244 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77z"/>
+              </svg>
+              <span>X / Twitter</span>
+            </a>
+            <a href="https://www.instagram.com/goc_genesis_/" class="social-link" aria-label="Instagram profile"
+               target="_blank" rel="noopener noreferrer">
+              <!-- Instagram icon -->
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+              </svg>
+              <span>Instagram</span>
+            </a>
+            <a href="https://web.facebook.com/" class="social-link" aria-label="Facebook profile"
+               target="_blank" rel="noopener noreferrer">
+              <!-- Facebook icon -->
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+              </svg>
+              <span>Facebook</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Right: portrait — taller crop, face + suit centred -->
+        <div class="hero-portrait">
+          <div class="img-frame portrait-frame dark-ph">
+            <img src="images/portrait.JPG"
+                 alt="Goch Thiong Garang Akot speaking at a podium in a blue suit"
+                 loading="eager"
+                 onerror="this.parentElement.classList.add('missing')" />
+          </div>
+        </div>
+
+      </div><!-- /.hero-grid -->
+
+      <!-- Banner 21:9 — Goch public speaking video -->
+      <div class="hero-banner container">
+        <div class="banner-video-frame">
+          <video class="banner-video"
+                 autoplay muted loop playsinline
+                 preload="auto"
+                 poster="images/banner.jpg">
+            <source src="images/Goch Public Speaking Video .MOV" type="video/mp4" />
+          </video>
+          <!-- Cinematic gradient overlay for depth and legibility -->
+          <div class="banner-video-overlay" aria-hidden="true"></div>
+          <!-- Caption block — bottom-left -->
+          <div class="banner-video-caption">
+            <span class="banner-caption-tag">In action</span>
+            <p class="banner-caption-text">Public speaking &mdash; leading and inspiring audiences</p>
+          </div>
+          <!-- Play / pause toggle -->
+          <button class="banner-video-toggle"
+                  id="banner-video-toggle"
+                  type="button"
+                  aria-label="Pause background video">
+            <svg class="bv-icon bv-icon-pause" width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <rect x="6" y="4" width="4" height="16" rx="1"/>
+              <rect x="14" y="4" width="4" height="16" rx="1"/>
+            </svg>
+            <svg class="bv-icon bv-icon-play" width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <polygon points="6 4 20 12 6 20"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================
+         2. IMPACT IN NUMBERS — dark band
+    ===================================================== -->
+    <section class="impact" aria-label="Impact in numbers">
+      <div class="container impact-grid">
+        <div class="impact-item">
+          <span class="impact-num">8</span>
+          <span class="impact-label">community outreach programs developed with YALDA</span>
+        </div>
+        <div class="impact-item">
+          <span class="impact-num">60%</span>
+          <span class="impact-label">average follower growth across social media platforms</span>
+        </div>
+        <div class="impact-item">
+          <span class="impact-num">25</span>
+          <span class="impact-label">student mathematicians coached to district final rounds</span>
+        </div>
+        <div class="impact-item">
+          <span class="impact-num">70%+</span>
+          <span class="impact-label">fall in student misconduct cases at my school</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================
+         3. ABOUT ME — two columns, pull quote left
+    ===================================================== -->
+    <section id="about" class="section bg-paper">
+      <div class="container about-grid">
+
+        <!-- Left: heading + pull statement -->
+        <div class="about-left">
+          <h2 class="section-label">About me</h2>
+          <!-- Nationality tag -->
+          <div class="nationality-tag">
+            <span class="ss-flag sm" aria-hidden="true">
+              <span class="ss-black"></span>
+              <span class="ss-red"></span>
+              <span class="ss-green"></span>
+              <span class="ss-blue"></span>
+            </span>
+            <span>South Sudanese</span>
+          </div>
+          <p class="pull-statement">I lead, research and teach with one aim: to empower communities through teamwork and strategic initiatives.</p>
+        </div>
+
+        <!-- Right: paragraphs -->
+        <div class="about-right">
+          <!-- Meta line: nationality, base, institution -->
+          <p class="about-meta">
+            <span class="about-meta-item">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+              South Sudanese
+            </span>
+            <span class="about-meta-sep">·</span>
+            <span class="about-meta-item">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              Kigali, Rwanda
+            </span>
+            <span class="about-meta-sep">·</span>
+            <span class="about-meta-item">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+              ALU · BSc Entrepreneurial Leadership
+            </span>
+          </p>
+          <p>I serve as President of the South Sudanese Students' Association at African Leadership University. I lead efforts to build community, advocate for students' needs and celebrate cultural identity. I organize events, facilitate team collaboration and work with university leadership to improve the student experience.</p>
+          <p>I am pursuing a Bachelor of Science in Entrepreneurial Leadership at ALU. My path runs through education, administration, consulting and program coordination, and in every role I work to foster innovation and empower the people around me.</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =====================================================
+         4. WHAT I DO — three cards
+    ===================================================== -->
+    <section class="section bg-surface">
+      <div class="container">
+        <p class="section-intro-line">Three ways I create value for communities, clients and young people.</p>
+        <div class="do-grid">
+
+          <div class="do-card">
+            <h3>Lead communities</h3>
+            <p>I coordinate teams, organize events and speak for students in front of university leadership, so that community grows and needs are heard.</p>
+          </div>
+
+          <div class="do-card">
+            <h3>Turn research into strategy</h3>
+            <p>I interview stakeholders, synthesize market data and present clear recommendations that clients can act on.</p>
+          </div>
+
+          <div class="do-card">
+            <h3>Teach and build young talent</h3>
+            <p>I teach, coach and run programs that help young people think critically, ideate, prototype and communicate.</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================
+         5. SELECTED WORK — four projects, alternating photo
+    ===================================================== -->
+    <section id="work" class="section bg-paper">
+      <div class="container">
+        <h2 class="section-heading">Selected work</h2>
+        <p class="section-intro-line">Projects and roles where I led teams, researched problems and helped young people grow.</p>
+
+        <!-- Project 1: photo left -->
+        <article class="project photo-left">
+          <div class="project-photo">
+            <div class="img-frame r-16-9">
+              <img src="images/sssalu.jpg"
+                   alt="SSSALU event at African Leadership University"
+                   loading="lazy"
+                   onerror="this.parentElement.classList.add('missing')" />
+            </div>
+          </div>
+          <div class="project-text">
+            <p class="project-line">President, South Sudanese Students' Association at ALU · Apr 2026 to present · Kigali, Rwanda</p>
+            <h3 class="project-title">Leading South Sudanese students at ALU</h3>
+            <p>I lead and represent South Sudanese students across African Leadership University. I coordinate initiatives that build community, advocate for student needs and promote cultural identity, and I organize the events that bring people together. Working with my team and with university leadership, my focus is a better student experience for everyone.</p>
+            <p class="project-focus"><span>Focus:</span> team coordination and communication</p>
+          </div>
+        </article>
+
+        <!-- Project 2: photo right -->
+        <article class="project photo-right">
+          <div class="project-text">
+            <p class="project-line">Consultant, diiVe (internship) · Jun to Aug 2026 · Remote</p>
+            <h3 class="project-title">Turning client research into business strategy</h3>
+            <p>On this remote consulting internship, I researched and interviewed stakeholders to understand what clients were struggling with. I synthesized market data into value maps, turned complex insights into clear business recommendations, and presented the final solutions to corporate stakeholders in slide decks I designed. Working with global teams sharpened my business acumen and my corporate storytelling.</p>
+            <p class="project-focus"><span>Focus:</span> stakeholder research, value maps and presentations</p>
+          </div>
+          <div class="project-photo">
+            <div class="img-frame r-16-9">
+              <img src="images/diive.jpg"
+                   alt="Slide or value map from the diiVe consulting internship"
+                   loading="lazy"
+                   onerror="this.parentElement.classList.add('missing')" />
+            </div>
+          </div>
+        </article>
+
+        <!-- Project 3: photo left -->
+        <article class="project photo-left">
+          <div class="project-photo">
+            <div class="img-frame r-16-9">
+              <img src="images/ja-africa.jpg"
+                   alt="Ideation or prototyping session at Junior Achievement Africa"
+                   loading="lazy"
+                   onerror="this.parentElement.classList.add('missing')" />
+            </div>
+          </div>
+          <div class="project-text">
+            <p class="project-line">Program Intern, Junior Achievement Africa · Feb to Apr 2026 · Kigali, Rwanda</p>
+            <h3 class="project-title">Helping students ideate and prototype</h3>
+            <p>I taught students ideation and prototyping and helped deliver the SET4LYF program behind the scenes. That meant organizing teacher training, student ideathons, company visits and partner events, managing materials and supplies, and collecting quantitative and qualitative data to measure outcomes and prepare reports. I also supported the Programs Manager by engaging partners and documenting meetings.</p>
+            <p class="project-focus"><span>Focus:</span> facilitation, program coordination and data collection</p>
+          </div>
+        </article>
+
+        <!-- Project 4: text only (no photo) -->
+        <article class="project project-text-only">
+          <div class="project-text">
+            <p class="project-line">Administrative Assistant, Youth Alliance for Leadership and Development in Africa (YALDA) · Mar 2025 to Feb 2026 · Remote, South Africa</p>
+            <h3 class="project-title">Growing youth outreach, in person and online</h3>
+            <p>I helped develop community outreach programs for YALDA and kept participants engaged after every workshop. I also managed the social media platforms, building an audience for the work.</p>
+            <!-- Results row -->
+            <div class="results-row">
+              <div class="result-item">
+                <span class="result-num">8</span>
+                <span class="result-label">outreach programs</span>
+              </div>
+              <div class="result-item">
+                <span class="result-num">+15%</span>
+                <span class="result-label">turnout after each session</span>
+              </div>
+              <div class="result-item">
+                <span class="result-num">+60%</span>
+                <span class="result-label">average follower growth</span>
+              </div>
+              <div class="result-item">
+                <span class="result-num">+30%</span>
+                <span class="result-label">engagement</span>
+              </div>
+            </div>
+            <p class="project-focus"><span>Focus:</span> research and accounting</p>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- =====================================================
+         6. MY JOURNEY — two columns: prose + timeline
+    ===================================================== -->
+    <section id="journey" class="section bg-surface">
+      <div class="container journey-grid">
+
+        <!-- Left: narrative paragraphs -->
+        <div class="journey-prose">
+          <h2 class="section-heading">My journey</h2>
+          <p class="section-intro-line">From the classroom to consulting and student leadership.</p>
+
+          <p>My path began in education. In 2022 I worked as a tutor at Mabil Internet Cyber Center, training students on Microsoft Word, Excel and PowerPoint, internet browsing and email. I taught them operating systems and file management, made sure they practiced what they learned, and guided them to think critically about technology and solve problems.</p>
+
+          <p>From 2023 to 2024 I taught Science and Mathematics to grades 7 and 8 at Amazing Grace Primary School. I enforced school rules firmly, and cases of misconduct fell by more than 70%. As math patron, I coached mathematics competitions, and 25 young mathematicians reached the final rounds of the district middle school competitions. In every class I worked to build critical thinking and communication skills.</p>
+
+          <p>In 2025 I began my BSc in Entrepreneurial Leadership at ALU. Since then I have moved into program work, consulting and student leadership, carrying the same habits from the classroom: prepare well, explain clearly and help people grow.</p>
+        </div>
+
+        <!-- Right: vertical timeline -->
+        <div class="journey-timeline" aria-label="Career timeline">
+          <div class="tl-item">
+            <span class="tl-year">2022</span>
+            <span class="tl-dot" aria-hidden="true"></span>
+            <span class="tl-text">Tutor, Mabil Internet Cyber Center</span>
+          </div>
+          <div class="tl-item">
+            <span class="tl-year">2023–24</span>
+            <span class="tl-dot" aria-hidden="true"></span>
+            <span class="tl-text">Teacher, Amazing Grace Primary School</span>
+          </div>
+          <div class="tl-item">
+            <span class="tl-year">2025</span>
+            <span class="tl-dot" aria-hidden="true"></span>
+            <span class="tl-text">Began BSc at ALU · Administrative Assistant at YALDA</span>
+          </div>
+          <div class="tl-item">
+            <span class="tl-year">2026</span>
+            <span class="tl-dot" aria-hidden="true"></span>
+            <span class="tl-text">Program Intern at Junior Achievement Africa · President of SSSALU · Consultant at diiVe</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =====================================================
+         7. HOW I WORK — four short columns
+    ===================================================== -->
+    <section class="section bg-paper">
+      <div class="container">
+        <h2 class="section-heading">How I work</h2>
+        <p class="section-intro-line">The habits behind my projects.</p>
+        <div class="how-grid">
+
+          <div class="how-item">
+            <span class="how-num">01</span>
+            <h3>Listen first</h3>
+            <p>Research and stakeholder interviews come before any solution.</p>
+          </div>
+
+          <div class="how-item">
+            <span class="how-num">02</span>
+            <h3>Make insight useful</h3>
+            <p>Value maps and clear recommendations turn complex data into decisions.</p>
+          </div>
+
+          <div class="how-item">
+            <span class="how-num">03</span>
+            <h3>Build with people</h3>
+            <p>Team coordination, partners and university leaders all shape the result.</p>
+          </div>
+
+          <div class="how-item">
+            <span class="how-num">04</span>
+            <h3>Measure results</h3>
+            <p>Data collection, reports and follow-up show what worked.</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================
+         8. SKILLS — five groups in a grid
+    ===================================================== -->
+    <section id="skills" class="section bg-surface">
+      <div class="container">
+        <h2 class="section-heading">Skills</h2>
+        <p class="section-intro-line">What I bring to a team.</p>
+
+        <dl class="skills-grid">
+
+          <div class="skill-item">
+            <dt>Leadership and coordination</dt>
+            <dd>Team coordination and communication, event organization, stakeholder engagement, program coordination</dd>
+          </div>
+
+          <div class="skill-item">
+            <dt>Research and analysis</dt>
+            <dd>Stakeholder interviews, market data synthesis, value maps, data collection and reporting</dd>
+          </div>
+
+          <div class="skill-item">
+            <dt>Communication</dt>
+            <dd>Corporate storytelling, slide deck design and delivery, social media management</dd>
+          </div>
+
+          <div class="skill-item">
+            <dt>Education and facilitation</dt>
+            <dd>Ideation and prototyping, teaching mathematics and science, computer literacy training</dd>
+          </div>
+
+          <div class="skill-item">
+            <dt>Operations</dt>
+            <dd>Logistics, procurement, administration, meeting documentation, accounting</dd>
+          </div>
+
+        </dl>
+      </div>
+    </section>
+
+    <!-- =====================================================
+         9. EDUCATION — two entries with institution logos
+    ===================================================== -->
+    <section id="education" class="section bg-paper">
+      <div class="container">
+        <div class="edu-section-header">
+          <span class="edu-header-icon" aria-hidden="true">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+          </span>
+          <div>
+            <h2 class="section-heading">Education</h2>
+            <p class="section-intro-line">My academic foundation, from secondary school to university.</p>
+          </div>
+        </div>
+
+        <div class="edu-entries">
+
+          <!-- Entry 1: African Leadership University -->
+          <article class="edu-entry">
+            <div class="edu-entry-marker" aria-hidden="true"></div>
+            <div class="edu-logo">
+              <img src="images/alu.jpg"
+                   alt="African Leadership University logo"
+                   loading="lazy"
+                   onerror="this.style.display='none'" />
+            </div>
+            <div class="edu-entry-body">
+              <div class="edu-entry-top">
+                <h3 class="edu-entry-school">African Leadership University</h3>
+                <span class="edu-status edu-status-active">In Progress</span>
+              </div>
+              <p class="edu-entry-degree">BSc (Hons) in Entrepreneurial Leadership &middot; Entrepreneurship / Entrepreneurial Studies</p>
+              <div class="edu-entry-meta">
+                <p class="edu-entry-date">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                  Jan 2025 &ndash; May 2028
+                </p>
+                <p class="edu-entry-loc">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                  Kigali, Rwanda
+                </p>
+              </div>
+              <div class="edu-entry-skills">
+                <span class="edu-skill-tag">Research Skills</span>
+                <span class="edu-skill-tag">Creative Entrepreneurship</span>
+                <span class="edu-skill-tag">+3 skills</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Entry 2: Promised Land Secondary School -->
+          <article class="edu-entry">
+            <div class="edu-entry-marker" aria-hidden="true"></div>
+            <div class="edu-logo">
+              <img src="images/Promised Land Logo.jpeg"
+                   alt="Promised Land Secondary School logo"
+                   loading="lazy"
+                   onerror="this.style.display='none'" />
+            </div>
+            <div class="edu-entry-body">
+              <div class="edu-entry-top">
+                <h3 class="edu-entry-school">Promised Land Secondary School</h3>
+                <span class="edu-status edu-status-done">Completed</span>
+              </div>
+              <div class="edu-entry-meta">
+                <p class="edu-entry-date">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                  Feb 2018 &ndash; Apr 2021
+                </p>
+              </div>
+              <div class="edu-grade-badge">
+                <span class="edu-grade-num">81.6%</span>
+                <span class="edu-grade-label">Final Grade</span>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================
+         10. CONTACT — green background band
+    ===================================================== -->
+    <section id="contact" class="section bg-accent">
+      <div class="container contact-inner">
+
+        <h2 class="contact-heading">Let's build something together</h2>
+        <p class="contact-line">I welcome conversations about consulting, student partnerships and programs that empower communities.</p>
+
+        <a href="https://www.linkedin.com/in/goch-thiong/?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BNzYOG6jDTwe2KNGwpO6u%2Bg%3D%3D"
+           target="_blank" rel="noopener noreferrer"
+           class="btn btn-contact">Connect on LinkedIn</a>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- =====================================================
+       FOOTER — dark, 4-column: subscribe | navigate | services | connect
+  ===================================================== -->
+  <footer class="site-footer">
+    <div class="footer-top">
+      <div class="container footer-grid">
+
+        <!-- Col 1: tagline + subscribe form -->
+        <div class="footer-col footer-col-subscribe">
+          <p class="footer-tagline">Entrepreneurial leadership student, consultant and community organizer — empowering communities across Africa and beyond.</p>
+
+          <form class="subscribe-form" id="subscribe-form" novalidate>
+            <div class="sub-field">
+              <label for="sub-first" class="sr-only">First Name</label>
+              <input type="text" id="sub-first" name="first_name" placeholder="First Name" autocomplete="given-name" />
+            </div>
+            <div class="sub-field">
+              <label for="sub-last" class="sr-only">Last Name</label>
+              <input type="text" id="sub-last" name="last_name" placeholder="Last Name" autocomplete="family-name" />
+            </div>
+            <div class="sub-field">
+              <label for="sub-email" class="sr-only">Email Address</label>
+              <input type="email" id="sub-email" name="email" placeholder="Email Address" autocomplete="email" required />
+            </div>
+            <button type="submit" class="sub-btn">
+              <!-- Paper-plane icon -->
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+              </svg>
+              Subscribe
+            </button>
+            <p class="sub-success" id="sub-success" aria-live="polite">Thanks! You're on the list.</p>
+          </form>
+        </div>
+
+        <!-- Col 2: Navigate -->
+        <div class="footer-col">
+          <h3 class="footer-col-heading">Navigate</h3>
+          <ul class="footer-links">
+            <li><a href="#hero">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#work">Work</a></li>
+            <li><a href="#journey">Journey</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#education">Education</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: What I Do -->
+        <div class="footer-col">
+          <h3 class="footer-col-heading">What I Do</h3>
+          <ul class="footer-links">
+            <li><a href="#work">Community Leadership</a></li>
+            <li><a href="#work">Research &amp; Consulting</a></li>
+            <li><a href="#work">Program Coordination</a></li>
+            <li><a href="#work">Teaching &amp; Facilitation</a></li>
+            <li><a href="#work">Social Media Management</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 4: Connect (social) -->
+        <div class="footer-col">
+          <h3 class="footer-col-heading">Connect</h3>
+          <ul class="footer-social">
+
+            <li>
+              <a href="https://www.linkedin.com/in/goch-thiong/?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BNzYOG6jDTwe2KNGwpO6u%2Bg%3D%3D"
+                 target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                <span class="fsoc-icon">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                </span>
+                LinkedIn
+              </a>
+            </li>
+
+            <li>
+              <!-- X/Twitter -->
+              <a href="https://x.com/gochthiongul" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)">
+                <span class="fsoc-icon">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.737-8.835L2.25 2.25h6.953l4.258 5.628L18.244 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77z"/></svg>
+                </span>
+                X (Twitter)
+              </a>
+            </li>
+
+            <li>
+              <!-- Instagram -->
+              <a href="https://www.instagram.com/goc_genesis_/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                <span class="fsoc-icon">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+                </span>
+                Instagram
+              </a>
+            </li>
+
+            <li>
+              <!-- Facebook -->
+              <a href="https://web.facebook.com/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                <span class="fsoc-icon">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                </span>
+                Facebook
+              </a>
+            </li>
+
+            <li>
+              <a href="mailto:gochthiong5@gmail.com" aria-label="Email">
+                <span class="fsoc-icon">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                </span>
+                Email
+              </a>
+            </li>
+
+          </ul>
+        </div>
+
+      </div><!-- /.footer-grid -->
+    </div><!-- /.footer-top -->
+
+    <!-- Bottom bar: copyright -->
+    <div class="footer-bottom">
+      <div class="container footer-bottom-inner">
+        <p>&copy; 2026 Goch Thiong Garang Akot. Kigali, Rwanda.</p>
+      </div>
+    </div>
+
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script>
+    /* Subscribe form — client-side only (no backend).
+       Wire this to Mailchimp / ConvertKit / any service later
+       by posting to their API endpoint inside the fetch below. */
+    (function () {
+      var form = document.getElementById('subscribe-form');
+      var msg  = document.getElementById('sub-success');
+      if (!form) return;
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var email = form.querySelector('#sub-email');
+        if (!email.value || !email.validity.valid) {
+          email.focus();
+          return;
+        }
+        /* Show success message and reset */
+        msg.style.display = 'block';
+        form.reset();
+        setTimeout(function () { msg.style.display = 'none'; }, 6000);
+      });
+    }());
+  </script>
+</body>
+</html>
