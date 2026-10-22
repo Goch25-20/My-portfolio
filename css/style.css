@@ -1165,33 +1165,6 @@ p:last-child { margin-bottom: 0; }
 }
 .edu-entry-loc svg { color: var(--accent); flex-shrink: 0; }
 
-/* Grade badge — prominent circular-style badge */
-.edu-grade-badge {
-  display: inline-flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.1em;
-  padding: var(--s2) var(--s3);
-  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-mid) 100%);
-  border-radius: 10px;
-  color: #fff;
-  margin-top: 0.3rem;
-}
-.edu-grade-num {
-  font-family: var(--f-display);
-  font-size: 1.5rem;
-  font-weight: 700;
-  line-height: 1;
-}
-.edu-grade-label {
-  font-family: var(--f-body);
-  font-size: 0.68rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  opacity: 0.85;
-}
-
 .edu-entry-skills {
   display: flex;
   flex-wrap: wrap;
@@ -1572,7 +1545,6 @@ p:last-child { margin-bottom: 0; }
   .edu-header-icon { width: 44px; height: 44px; border-radius: 8px; }
   .edu-header-icon svg { width: 24px; height: 24px; }
   .edu-entry-top { flex-direction: column; gap: 0.3rem; }
-  .edu-grade-num { font-size: 1.3rem; }
 
   /* Timeline line position */
   .journey-timeline::before { left: 70px; }
