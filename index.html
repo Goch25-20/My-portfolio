@@ -9,7 +9,7 @@
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;0,6..72,700;1,6..72,400;1,6..72,600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;0,6..72,700;1,6..72,400;1,6..72,600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="css/style.css" />
 </head>
@@ -45,6 +45,7 @@
           <li><a href="#journey" class="nav-link">Journey</a></li>
           <li><a href="#skills"    class="nav-link">Skills</a></li>
           <li><a href="#education" class="nav-link">Education</a></li>
+          <li><a href="#certifications" class="nav-link">Certifications</a></li>
           <li><a href="#contact"   class="nav-link">Contact</a></li>
         </ul>
       </nav>
@@ -83,39 +84,71 @@
   <main>
 
     <!-- =====================================================
-         1. HERO — dark, two columns
+         1. HERO — full-screen background video
     ===================================================== -->
-    <section id="hero" class="hero">
+    <section id="hero" class="c-hero" aria-label="Hero">
+
+      <!-- Looping background video -->
+      <video class="c-hero__video"
+             autoplay muted loop playsinline
+             preload="auto"
+             poster="images/banner.jpg"
+             aria-hidden="true">
+        <source src="images/Goch Public Speaking Video .MOV" type="video/mp4" />
+      </video>
+
+      <!-- Glassmorphism overlay: black 45% + backdrop-blur -->
+      <div class="c-hero__overlay" aria-hidden="true"></div>
+
+      <!-- Content — flex column, vertically centered, left-aligned -->
+      <div class="c-hero__content">
+        <span class="c-hero__kicker">South Sudanese &nbsp;·&nbsp; ALU Kigali &nbsp;·&nbsp; Entrepreneurial Leadership</span>
+        <h1 class="c-hero__headline">
+          Goch&nbsp;Thiong<br>
+          <em>Garang&nbsp;Akot</em>
+        </h1>
+        <p class="c-hero__sub">
+          Entrepreneurial Leader &nbsp;·&nbsp; Consultant &nbsp;·&nbsp; Community Organizer
+        </p>
+        <div class="c-hero__btns">
+          <a href="#work"    class="btn btn-solid">See my work</a>
+          <a href="#contact" class="btn btn-ghost">Get in touch</a>
+        </div>
+      </div>
+
+      <!-- Scroll nudge -->
+      <div class="c-hero__scroll-hint" aria-hidden="true">
+        <span class="c-hero__scroll-line"></span>
+        <span class="c-hero__scroll-label">Scroll</span>
+      </div>
+
+    </section>
+
+    <!-- =====================================================
+         1b. ORIGINAL HERO CONTENT (after video) — two columns
+    ===================================================== -->
+    <section class="hero-detail" id="hero-detail">
       <div class="container hero-grid">
 
         <!-- Left: text -->
         <div class="hero-text">
-          <!-- Kicker line: nationality + context -->
           <span class="hero-kicker">South Sudanese &nbsp;·&nbsp; ALU Kigali &nbsp;·&nbsp; Entrepreneurial Leadership</span>
-          <h1 class="hero-name">Goch Thiong<br>Garang Akot</h1>
           <p class="hero-tagline">"Stoic through it all."</p>
           <p class="hero-role">Entrepreneurial leadership student,<br>consultant and community organizer</p>
           <p class="hero-intro">I am a BSc student in Entrepreneurial Leadership at African Leadership University in Kigali. I lead the South Sudanese Students' Association, consult on business problems and support programs that help young people learn, build and lead.</p>
-          <div class="hero-btns">
-            <a href="#work"    class="btn btn-solid">See my work</a>
-            <a href="#contact" class="btn btn-ghost">Get in touch</a>
-          </div>
 
-          <!-- Social media handles — visible immediately on landing -->
+          <!-- Social media handles -->
           <div class="hero-social" aria-label="Social media profiles">
             <a href="https://www.linkedin.com/in/goch-thiong/?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BNzYOG6jDTwe2KNGwpO6u%2Bg%3D%3D"
                target="_blank" rel="noopener noreferrer"
                class="social-link" aria-label="LinkedIn profile">
-              <!-- LinkedIn icon -->
               <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                 <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
               </svg>
               <span>LinkedIn</span>
             </a>
-            <!-- Add your other handles below. Replace # with your real URL. -->
             <a href="https://x.com/gochthiongul" class="social-link" aria-label="X / Twitter profile"
                target="_blank" rel="noopener noreferrer">
-              <!-- X (Twitter) icon -->
               <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                 <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.737-8.835L2.25 2.25h6.953l4.258 5.628L18.244 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77z"/>
               </svg>
@@ -123,7 +156,6 @@
             </a>
             <a href="https://www.instagram.com/goc_genesis_/" class="social-link" aria-label="Instagram profile"
                target="_blank" rel="noopener noreferrer">
-              <!-- Instagram icon -->
               <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                 <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
               </svg>
@@ -131,7 +163,6 @@
             </a>
             <a href="https://web.facebook.com/" class="social-link" aria-label="Facebook profile"
                target="_blank" rel="noopener noreferrer">
-              <!-- Facebook icon -->
               <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                 <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
               </svg>
@@ -140,7 +171,7 @@
           </div>
         </div>
 
-        <!-- Right: portrait — taller crop, face + suit centred -->
+        <!-- Right: portrait -->
         <div class="hero-portrait">
           <div class="img-frame portrait-frame dark-ph">
             <img src="images/portrait.JPG"
@@ -152,35 +183,21 @@
 
       </div><!-- /.hero-grid -->
 
-      <!-- Banner 21:9 — Goch public speaking video -->
+      <!-- Banner — YouTube public speaking video -->
       <div class="hero-banner container">
-        <div class="banner-video-frame">
-          <video class="banner-video"
-                 autoplay muted loop playsinline
-                 preload="auto"
-                 poster="images/banner.jpg">
-            <source src="images/Goch Public Speaking Video .MOV" type="video/mp4" />
-          </video>
-          <!-- Cinematic gradient overlay for depth and legibility -->
-          <div class="banner-video-overlay" aria-hidden="true"></div>
-          <!-- Caption block — bottom-left -->
+        <div class="banner-video-frame banner-yt-frame">
+          <iframe
+            class="banner-yt"
+            src="https://www.youtube.com/embed/wbKRsBO40yE?rel=0&modestbranding=1"
+            title="Goch Thiong — Public Speaking Video"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
+            loading="lazy"
+          ></iframe>
           <div class="banner-video-caption">
             <span class="banner-caption-tag">In action</span>
             <p class="banner-caption-text">Public speaking &mdash; leading and inspiring audiences</p>
           </div>
-          <!-- Play / pause toggle -->
-          <button class="banner-video-toggle"
-                  id="banner-video-toggle"
-                  type="button"
-                  aria-label="Pause background video">
-            <svg class="bv-icon bv-icon-pause" width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-              <rect x="6" y="4" width="4" height="16" rx="1"/>
-              <rect x="14" y="4" width="4" height="16" rx="1"/>
-            </svg>
-            <svg class="bv-icon bv-icon-play" width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-              <polygon points="6 4 20 12 6 20"/>
-            </svg>
-          </button>
         </div>
       </div>
     </section>
@@ -577,7 +594,232 @@
     </section>
 
     <!-- =====================================================
-         10. CONTACT — green background band
+         10. LICENSES & CERTIFICATIONS
+    ===================================================== -->
+    <section id="certifications" class="section bg-surface">
+      <div class="container">
+
+        <div class="cert-section-header">
+          <span class="cert-header-icon" aria-hidden="true">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/>
+            </svg>
+          </span>
+          <div>
+            <h2 class="section-heading">Licenses &amp; Certifications</h2>
+            <p class="section-intro-line">Courses and credentials from leading global institutions.</p>
+          </div>
+        </div>
+
+        <!-- Two-column split: cert list left · award card right -->
+        <div class="cert-page-grid">
+
+          <!-- LEFT — ledger list (12 courses) -->
+          <div class="cert-col-list">
+            <ol class="cert-list" aria-label="Certifications list">
+
+              <!-- 1 -->
+              <li class="cert-row">
+                <div class="cert-main">
+                  <span class="cert-title">Beyond Silicon Valley: Growing Entrepreneurship in Transitioning Economies</span>
+                  <span class="cert-issuer">Case Western Reserve University</span>
+                  <span class="cert-meta">Issued Jul 2026 &nbsp;·&nbsp; Credential ID: R2ZU3VL9J3D0</span>
+                </div>
+                <a href="https://www.coursera.org/account/accomplishments/records/R2ZU3VL9J3D0" target="_blank" rel="noopener noreferrer" class="cert-link">
+                  Show Credential <span aria-hidden="true">↗</span>
+                </a>
+              </li>
+
+              <!-- 2 -->
+              <li class="cert-row">
+                <div class="cert-main">
+                  <span class="cert-title">Using Public Policy for Social Change</span>
+                  <span class="cert-issuer">University of Michigan</span>
+                  <span class="cert-meta">Issued Jul 2026 &nbsp;·&nbsp; Credential ID: FYIX57BMSEIV</span>
+                </div>
+                <a href="https://www.coursera.org/account/accomplishments/records/FYIX57BMSEIV" target="_blank" rel="noopener noreferrer" class="cert-link">
+                  Show Credential <span aria-hidden="true">↗</span>
+                </a>
+              </li>
+
+              <!-- 3 -->
+              <li class="cert-row">
+                <div class="cert-main">
+                  <span class="cert-title">AI, Business &amp; the Future of Work</span>
+                  <span class="cert-issuer">Lund University</span>
+                  <span class="cert-meta">Issued Jun 2026 &nbsp;·&nbsp; Credential ID: BA6C9LYM6XR3</span>
+                </div>
+                <a href="https://www.coursera.org/account/accomplishments/records/BA6C9LYM6XR3" target="_blank" rel="noopener noreferrer" class="cert-link">
+                  Show Credential <span aria-hidden="true">↗</span>
+                </a>
+              </li>
+
+              <!-- 4 -->
+              <li class="cert-row">
+                <div class="cert-main">
+                  <span class="cert-title">Innovation and Emerging Technology: Be Disruptive</span>
+                  <span class="cert-issuer">Macquarie University</span>
+                  <span class="cert-meta">Issued Jun 2026 &nbsp;·&nbsp; Credential ID: RCOHM9Y1GH2E</span>
+                </div>
+                <a href="https://www.coursera.org/account/accomplishments/records/RCOHM9Y1GH2E" target="_blank" rel="noopener noreferrer" class="cert-link">
+                  Show Credential <span aria-hidden="true">↗</span>
+                </a>
+              </li>
+
+              <!-- 5 -->
+              <li class="cert-row">
+                <div class="cert-main">
+                  <span class="cert-title">What Future for Education?</span>
+                  <span class="cert-issuer">University of London</span>
+                  <span class="cert-meta">Issued Mar 2026 &nbsp;·&nbsp; Credential ID: JB6K25ZZI9BN</span>
+                </div>
+                <a href="https://www.coursera.org/account/accomplishments/records/JB6K25ZZI9BN" target="_blank" rel="noopener noreferrer" class="cert-link">
+                  Show Credential <span aria-hidden="true">↗</span>
+                </a>
+              </li>
+
+              <!-- 6 -->
+              <li class="cert-row">
+                <div class="cert-main">
+                  <span class="cert-title">Financial Planning for Young Adults</span>
+                  <span class="cert-issuer">University of Illinois Urbana-Champaign</span>
+                  <span class="cert-meta">Issued May 2026 &nbsp;·&nbsp; Credential ID: 92HANXJ5YG9E</span>
+                </div>
+                <a href="https://www.coursera.org/account/accomplishments/records/92HANXJ5YG9E" target="_blank" rel="noopener noreferrer" class="cert-link">
+                  Show Credential <span aria-hidden="true">↗</span>
+                </a>
+              </li>
+
+              <!-- 7 -->
+              <li class="cert-row">
+                <div class="cert-main">
+                  <span class="cert-title">Ready, Set, Future! Introduction to Futures Thinking</span>
+                  <span class="cert-issuer">Institute for the Future</span>
+                  <span class="cert-meta">Issued Jun 2026 &nbsp;·&nbsp; Credential ID: LS3GB989QOC5</span>
+                </div>
+                <a href="https://www.coursera.org/account/accomplishments/records/LS3GB989QOC5" target="_blank" rel="noopener noreferrer" class="cert-link">
+                  Show Credential <span aria-hidden="true">↗</span>
+                </a>
+              </li>
+
+              <!-- 8 -->
+              <li class="cert-row">
+                <div class="cert-main">
+                  <span class="cert-title">Project Initiation: Starting a Successful Project</span>
+                  <span class="cert-issuer">Google</span>
+                  <span class="cert-meta">Issued Oct 2025 &nbsp;·&nbsp; Credential ID: 1S9IJXCAFFYA</span>
+                </div>
+                <a href="https://www.coursera.org/account/accomplishments/records/1S9IJXCAFFYA" target="_blank" rel="noopener noreferrer" class="cert-link">
+                  Show Credential <span aria-hidden="true">↗</span>
+                </a>
+              </li>
+
+              <!-- 9 -->
+              <li class="cert-row">
+                <div class="cert-main">
+                  <span class="cert-title">Social Media and Digital Marketing Fundamentals</span>
+                  <span class="cert-issuer">Digital Marketing Institute</span>
+                  <span class="cert-meta">Issued Oct 2026 &nbsp;·&nbsp; Credential ID: ITDLWLK73ES6</span>
+                </div>
+                <a href="https://www.coursera.org/account/accomplishments/verify/ITDLWLK73ES6" target="_blank" rel="noopener noreferrer" class="cert-link">
+                  Show Credential <span aria-hidden="true">↗</span>
+                </a>
+              </li>
+
+              <!-- 10 -->
+              <li class="cert-row">
+                <div class="cert-main">
+                  <span class="cert-title">Foundations of Project Management</span>
+                  <span class="cert-issuer">Google</span>
+                  <span class="cert-meta">Issued Oct 2025 &nbsp;·&nbsp; Credential ID: 9MSLC5QH5OVW</span>
+                </div>
+                <a href="https://www.coursera.org/account/accomplishments/records/9MSLC5QH5OVW" target="_blank" rel="noopener noreferrer" class="cert-link">
+                  Show Credential <span aria-hidden="true">↗</span>
+                </a>
+              </li>
+
+              <!-- 11 -->
+              <li class="cert-row">
+                <div class="cert-main">
+                  <span class="cert-title">Entrepreneurship Strategy: From Ideation to Exit</span>
+                  <span class="cert-issuer">HEC Paris</span>
+                  <span class="cert-meta">Issued Aug 2025 &nbsp;·&nbsp; Credential ID: 7DAR5SN8GC7M</span>
+                </div>
+                <a href="https://www.coursera.org/account/accomplishments/records/7DAR5SN8GC7M" target="_blank" rel="noopener noreferrer" class="cert-link">
+                  Show Credential <span aria-hidden="true">↗</span>
+                </a>
+              </li>
+
+              <!-- 12 -->
+              <li class="cert-row">
+                <div class="cert-main">
+                  <span class="cert-title">Building Fintech Startups in Emerging Markets</span>
+                  <span class="cert-issuer">University of Cape Town</span>
+                  <span class="cert-meta">Issued Jul 2025 &nbsp;·&nbsp; Credential ID: 85EJWSNJIS0A</span>
+                </div>
+                <a href="https://www.coursera.org/account/accomplishments/records/85EJWSNJIS0A" target="_blank" rel="noopener noreferrer" class="cert-link">
+                  Show Credential <span aria-hidden="true">↗</span>
+                </a>
+              </li>
+
+            </ol>
+          </div><!-- /.cert-col-list -->
+
+          <!-- RIGHT — Award card: Sector Challenge 2026 -->
+          <aside class="cert-col-award" aria-label="Award highlight">
+
+            <div class="award-card">
+
+              <!-- Trophy icon -->
+              <div class="award-icon" aria-hidden="true">
+                <svg width="36" height="36" viewBox="0 0 24 24" fill="none"
+                     stroke="currentColor" stroke-width="1.6"
+                     stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M6 9H4a2 2 0 0 1-2-2V5h4"/>
+                  <path d="M18 9h2a2 2 0 0 0 2-2V5h-4"/>
+                  <path d="M12 17v4"/>
+                  <path d="M8 21h8"/>
+                  <path d="M6 3h12v9a6 6 0 0 1-12 0V3z"/>
+                </svg>
+              </div>
+
+              <!-- Badge: placement -->
+              <span class="award-badge">🥉 2nd Runners-Up</span>
+
+              <!-- Award title -->
+              <h3 class="award-title">Sector Challenge 2026</h3>
+              <p class="award-issuer">African Leaders (AL) for Education &nbsp;·&nbsp; Jul 2026</p>
+
+              <!-- Divider -->
+              <hr class="award-rule" />
+
+              <!-- Project description -->
+              <div class="award-project">
+                <p class="award-project-label">Project</p>
+                <p class="award-project-name">Mwalimu AI</p>
+                <p class="award-project-desc">
+                  An AI system designed to help students from disadvantaged backgrounds access
+                  quality study materials entirely offline — bridging the connectivity gap and
+                  putting learning in every student's hands.
+                </p>
+              </div>
+
+              <!-- Credential link -->
+              <a href="https://credsverse.com/credentials/e1bd5ea7-4583-491b-940c-13a017e9b8af"
+                 target="_blank" rel="noopener noreferrer"
+                 class="award-credential-link">
+                View Award Certificate <span aria-hidden="true">↗</span>
+              </a>
+
+            </div><!-- /.award-card -->
+          </aside><!-- /.cert-col-award -->
+
+        </div><!-- /.cert-page-grid -->
+      </div>
+    </section>
+
+    <!-- =====================================================
+         11. CONTACT — cobalt background band
     ===================================================== -->
     <section id="contact" class="section bg-accent">
       <div class="container contact-inner">
@@ -639,6 +881,7 @@
             <li><a href="#journey">Journey</a></li>
             <li><a href="#skills">Skills</a></li>
             <li><a href="#education">Education</a></li>
+            <li><a href="#certifications">Certifications</a></li>
             <li><a href="#contact">Contact</a></li>
           </ul>
         </div>

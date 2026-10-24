@@ -411,9 +411,176 @@ p:last-child { margin-bottom: 0; }
 .menu-btn[aria-expanded="true"] .bar:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
 /* ----------------------------------------------------------
-   7. HERO — dark, two-column, portrait bleeds to bottom
+/* ----------------------------------------------------------
+/* ----------------------------------------------------------
+   7. HERO — full-screen background video
+   Black 45% glassmorphism overlay · flex · left-aligned content
 ---------------------------------------------------------- */
+
+/* Section fills the full viewport */
+.c-hero {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: 560px;
+  overflow: hidden;
+  background: #000;
+
+  /* Flexbox: vertical centering, left-aligned content */
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+/* Background video — covers the full section */
+.c-hero__video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+  display: block;
+  z-index: 0;
+}
+
+/* Glassmorphism overlay:
+   - rgba(0,0,0,0.45) dark tint for legibility
+   - backdrop-filter blur ties into the frosted-glass look   */
+.c-hero__overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Content block — sits above the overlay, left-aligned */
+.c-hero__content {
+  position: relative;
+  z-index: 2;
+  padding: 0 clamp(2rem, 8vw, 8rem);
+  max-width: 780px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0;
+}
+
+/* Kicker line */
+.c-hero__kicker {
+  display: block;
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: clamp(0.7rem, 1.2vw, 0.8rem);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: rgba(255, 255, 255, 0.60);
+  margin-bottom: 1.2rem;
+}
+
+/* Headline — Instrument Serif, massive */
+.c-hero__headline {
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-size: clamp(3.2rem, 9vw, 8rem);
+  font-weight: 400;
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  color: #fff;
+  margin: 0 0 1rem;
+}
+
+.c-hero__headline em {
+  font-style: italic;
+  color: rgba(255, 255, 255, 0.80);
+}
+
+/* Role sub-line */
+.c-hero__sub {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: clamp(0.78rem, 1.4vw, 0.95rem);
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.60);
+  margin: 0 0 2.4rem;
+}
+
+/* CTA row */
+.c-hero__btns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+}
+
+/* Scroll nudge — bottom-centre */
+.c-hero__scroll-hint {
+  position: absolute;
+  bottom: 2.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  opacity: 1;
+  transition: opacity 0.4s;
+  pointer-events: none;
+}
+
+.c-hero__scroll-line {
+  display: block;
+  width: 1px;
+  height: 52px;
+  background: linear-gradient(to bottom, rgba(255,255,255,0.0), rgba(255,255,255,0.55));
+  animation: scrollPulse 1.8s ease-in-out infinite;
+}
+
+.c-hero__scroll-label {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+@keyframes scrollPulse {
+  0%   { transform: scaleY(0); transform-origin: top;    opacity: 0; }
+  10%  { opacity: 1; }
+  50%  { transform: scaleY(1); transform-origin: top;    opacity: 1; }
+  51%  { transform: scaleY(1); transform-origin: bottom; opacity: 1; }
+  90%  { opacity: 1; }
+  100% { transform: scaleY(0); transform-origin: bottom; opacity: 0; }
+}
+
+/* Reduced-motion: no animation */
+@media (prefers-reduced-motion: reduce) {
+  .c-hero__scroll-hint { display: none; }
+  .c-hero__scroll-line { animation: none; }
+}
+
+/* Mobile: tighter padding */
+@media (max-width: 600px) {
+  .c-hero__content { padding: 0 1.75rem; }
+  .c-hero__scroll-hint { bottom: 1.5rem; }
+}
+
+/* ----------------------------------------------------------
+   7b. HERO DETAIL — original two-column section (below video)
+---------------------------------------------------------- */
+.hero-detail {
+  background: var(--dark-bg);
+  padding-top: var(--s7);
+  padding-bottom: 0;
+  overflow: hidden;
+}
+
 .hero {
+  /* kept for legacy class references in other rules */
   background: var(--dark-bg);
   padding-top: var(--s7);
   padding-bottom: 0;
@@ -443,7 +610,6 @@ p:last-child { margin-bottom: 0; }
   margin-bottom: var(--s2);
 }
 
-/* For dark mode, ensure accent kicker stays readable */
 @media (prefers-color-scheme: dark) {
   .hero-kicker { color: #6BBDD4; }
 }
@@ -490,14 +656,12 @@ p:last-child { margin-bottom: 0; }
 /* Portrait column — flush to section bottom */
 .hero-portrait { align-self: end; }
 
-/* Frame: 4:5 ratio — wide enough to fill the column cleanly */
 .hero-portrait .img-frame {
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
-  padding-bottom: 125%;   /* 4:5 — shows face, suit, hands */
+  padding-bottom: 125%;
 }
 
-/* Subtle gradient at the bottom — blends portrait into dark bg */
 .hero-portrait .img-frame::after {
   content: '';
   position: absolute;
@@ -510,7 +674,6 @@ p:last-child { margin-bottom: 0; }
   z-index: 1;
 }
 
-/* Thin cobalt accent line on the left edge of the portrait */
 .hero-portrait .img-frame::before {
   content: '';
   position: absolute;
@@ -522,7 +685,7 @@ p:last-child { margin-bottom: 0; }
   z-index: 2;
 }
 
-/* Banner — still inside dark hero bg, separated by padding */
+/* Banner — YouTube embed */
 .hero-banner {
   padding-top: var(--s4);
   padding-bottom: var(--s6);
@@ -530,53 +693,47 @@ p:last-child { margin-bottom: 0; }
 }
 
 /* ----------------------------------------------------------
-   7b. BANNER VIDEO — Goch public speaking video
-   Cinematic 21:9 frame with gradient overlay, caption and toggle.
+   7b. BANNER VIDEO — Goch public speaking video (YouTube embed)
+   16:9 responsive iframe with caption overlay.
 ---------------------------------------------------------- */
 .banner-video-frame {
   position: relative;
   width: 100%;
-  padding-bottom: 42.86%;        /* 21:9 cinematic ratio */
-  overflow: hidden;
   border-radius: var(--r);
   background: #050518;
   box-shadow: 0 12px 44px rgba(0, 0, 0, 0.50);
   border: 1px solid rgba(107, 189, 212, 0.14);
+  overflow: hidden;
 }
 
-.banner-video {
+/* 16:9 aspect ratio wrapper for the iframe */
+.banner-yt-frame {
+  padding-bottom: 56.25%;          /* 16:9 */
+}
+
+.banner-yt {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  object-position: center 35%;
+  border: none;
   display: block;
 }
 
-/* Cinematic gradient overlay — darker at bottom for caption legibility */
-.banner-video-overlay {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  z-index: 1;
-  background:
-    linear-gradient(
-      to top,
-      rgba(13, 13, 43, 0.82) 0%,
-      rgba(13, 13, 43, 0.34) 32%,
-      rgba(13, 13, 43, 0.06) 60%,
-      rgba(13, 13, 43, 0.28) 100%
-    );
-}
-
-/* Caption block — bottom-left */
+/* Caption block — bottom-left, sits above the iframe */
 .banner-video-caption {
   position: absolute;
   left: 0;
   bottom: 0;
   padding: var(--s4);
   z-index: 2;
+  pointer-events: none;          /* let clicks pass through to the iframe */
+  background: linear-gradient(
+    to top,
+    rgba(13, 13, 43, 0.80) 0%,
+    rgba(13, 13, 43, 0.00) 100%
+  );
+  width: 100%;
 }
 
 .banner-caption-tag {
@@ -605,50 +762,10 @@ p:last-child { margin-bottom: 0; }
   text-shadow: 0 2px 14px rgba(0, 0, 0, 0.65);
 }
 
-/* Play / pause toggle — bottom-right */
-.banner-video-toggle {
-  position: absolute;
-  right: var(--s3);
-  bottom: var(--s3);
-  z-index: 3;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 46px;
-  height: 46px;
-  border-radius: 50%;
-  border: 1.5px solid rgba(255, 255, 255, 0.45);
-  background: rgba(13, 13, 43, 0.55);
-  color: #fff;
-  cursor: pointer;
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
-  transition: background 0.15s, border-color 0.15s, transform 0.15s;
-}
-.banner-video-toggle:hover {
-  background: rgba(46, 68, 148, 0.78);
-  border-color: rgba(255, 255, 255, 0.78);
-  transform: scale(1.06);
-  opacity: 1;
-}
-.banner-video-toggle:focus-visible {
-  outline: 2px solid var(--accent-sky);
-  outline-offset: 3px;
-}
-
-/* Show only the relevant icon based on state */
-.banner-video-toggle .bv-icon-play { display: none; }
-.banner-video-toggle.is-paused .bv-icon-pause { display: none; }
-.banner-video-toggle.is-paused .bv-icon-play { display: block; }
-
 /* Responsive */
 @media (max-width: 600px) {
   .banner-video-caption { padding: var(--s3) var(--s3) var(--s2); }
   .banner-caption-text { font-size: 1rem; }
-  .banner-video-toggle {
-    width: 40px; height: 40px;
-    right: var(--s2); bottom: var(--s2);
-  }
 }
 
 /* ----------------------------------------------------------
@@ -1691,6 +1808,262 @@ p:last-child { margin-bottom: 0; }
 /* ----------------------------------------------------------
    EDUCATION ILLUSTRATION — now unused (replaced by logo-based entries)
 ---------------------------------------------------------- */
+
+/* ----------------------------------------------------------
+   LICENCES & CERTIFICATIONS — two-column layout
+   Left: ledger list · Right: award card
+---------------------------------------------------------- */
+.cert-section-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.1rem;
+  margin-bottom: var(--s5);
+}
+
+.cert-header-icon {
+  flex-shrink: 0;
+  margin-top: 0.15rem;
+  color: var(--accent);
+}
+
+/* Two-column page split */
+.cert-page-grid {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: var(--s5);
+  align-items: start;
+}
+
+/* ---- Left column: ledger list ---- */
+.cert-col-list { min-width: 0; }
+
+.cert-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--rule);
+}
+
+.cert-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s4);
+  padding: 1.2rem 0;
+  border-bottom: 1px solid var(--rule);
+  transition: background 0.18s, padding 0.18s;
+  border-radius: 4px;
+}
+
+.cert-row:hover {
+  background: rgba(46, 68, 148, 0.04);
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+  margin-left: -0.75rem;
+  margin-right: -0.75rem;
+}
+
+.cert-main {
+  display: flex;
+  flex-direction: column;
+  gap: 0.22rem;
+  min-width: 0;
+}
+
+.cert-title {
+  font-family: var(--f-body);
+  font-size: 0.93rem;
+  font-weight: 600;
+  color: var(--ink);
+  line-height: 1.4;
+}
+
+.cert-issuer {
+  font-family: var(--f-body);
+  font-size: 0.88rem;
+  font-weight: 400;
+  color: var(--ink);
+  opacity: 0.72;
+}
+
+.cert-meta {
+  font-family: var(--f-body);
+  font-size: 0.76rem;
+  color: var(--muted);
+  letter-spacing: 0.01em;
+}
+
+.cert-link {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3em;
+  font-family: var(--f-body);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--accent);
+  text-decoration: none;
+  border: 1.5px solid var(--accent);
+  padding: 0.4em 0.9em;
+  border-radius: 4px;
+  white-space: nowrap;
+  transition: background 0.15s, color 0.15s;
+}
+
+.cert-link:hover {
+  background: var(--accent);
+  color: #fff;
+  opacity: 1;
+}
+
+/* ---- Right column: award card ---- */
+.cert-col-award {
+  position: sticky;
+  top: 88px;   /* clears the sticky header */
+}
+
+.award-card {
+  background: var(--dark-bg);
+  border-radius: 14px;
+  padding: 2rem 1.75rem 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  box-shadow: 0 8px 36px rgba(13, 13, 43, 0.18);
+  border: 1px solid rgba(107, 189, 212, 0.18);
+  overflow: hidden;
+  position: relative;
+}
+
+/* Decorative glow at top-right */
+.award-card::before {
+  content: '';
+  position: absolute;
+  top: -40px;
+  right: -40px;
+  width: 140px;
+  height: 140px;
+  background: radial-gradient(circle, rgba(107, 189, 212, 0.18) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* Trophy icon */
+.award-icon {
+  color: #f5c842;
+  margin-bottom: 1rem;
+  line-height: 1;
+}
+
+/* Placement badge */
+.award-badge {
+  display: inline-block;
+  font-family: var(--f-body);
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: #f5c842;
+  background: rgba(245, 200, 66, 0.12);
+  border: 1px solid rgba(245, 200, 66, 0.30);
+  padding: 0.3em 0.85em;
+  border-radius: 20px;
+  margin-bottom: 1rem;
+}
+
+/* Award title */
+.award-title {
+  font-family: var(--f-display);
+  font-size: 1.45rem;
+  font-weight: 700;
+  color: var(--dark-ink);
+  line-height: 1.2;
+  margin: 0 0 0.3rem;
+}
+
+.award-issuer {
+  font-family: var(--f-body);
+  font-size: 0.8rem;
+  color: var(--dark-muted);
+  margin: 0 0 1.25rem;
+}
+
+.award-rule {
+  border: none;
+  border-top: 1px solid var(--dark-rule);
+  margin: 0 0 1.25rem;
+}
+
+/* Project block */
+.award-project-label {
+  font-family: var(--f-body);
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--accent-sky);
+  margin: 0 0 0.3rem;
+}
+
+.award-project-name {
+  font-family: var(--f-display);
+  font-size: 1.25rem;
+  font-weight: 600;
+  font-style: italic;
+  color: var(--dark-ink);
+  margin: 0 0 0.6rem;
+}
+
+.award-project-desc {
+  font-family: var(--f-body);
+  font-size: 0.88rem;
+  color: var(--dark-muted);
+  line-height: 1.7;
+  margin: 0 0 1.5rem;
+}
+
+/* Credential CTA */
+.award-credential-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  font-family: var(--f-body);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--accent-sky);
+  text-decoration: none;
+  border: 1.5px solid rgba(107, 189, 212, 0.40);
+  padding: 0.55em 1.1em;
+  border-radius: 6px;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+  align-self: flex-start;
+}
+
+.award-credential-link:hover {
+  background: rgba(107, 189, 212, 0.12);
+  border-color: var(--accent-sky);
+  color: var(--dark-ink);
+  opacity: 1;
+}
+
+/* Responsive: stack on tablet and below */
+@media (max-width: 900px) {
+  .cert-page-grid {
+    grid-template-columns: 1fr;
+  }
+  .cert-col-award {
+    position: static;
+    order: -1;           /* award card floats to top on mobile */
+  }
+}
+
+@media (max-width: 640px) {
+  .cert-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.85rem;
+  }
+  .cert-link { align-self: flex-start; }
+}
 
 /* ----------------------------------------------------------
    COLOUR PATCH — fixes after palette update

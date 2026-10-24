@@ -45,7 +45,6 @@
     var scrollY = window.scrollY + 80;
     var current = '';
 
-    /* Find which section is in view */
     ['hero', 'about', 'work', 'journey', 'skills', 'education', 'contact'].forEach(function (id) {
       var el = document.getElementById(id);
       if (el && el.offsetTop <= scrollY) current = id;
@@ -54,7 +53,6 @@
     links.forEach(function (link) {
       link.classList.remove('active');
       var href = link.getAttribute('href');
-      /* Match #hero for Home link too */
       if (href === '#' + current || (current === 'hero' && href === '#hero')) {
         link.classList.add('active');
       }
@@ -62,23 +60,6 @@
   }
 
   window.addEventListener('scroll', setActive, { passive: true });
-  setActive(); /* run once on load */
-
-  /* ---- Banner video play / pause toggle ---- */
-  var bvToggle = document.getElementById('banner-video-toggle');
-  var bvVideo  = document.querySelector('.banner-video');
-  if (bvToggle && bvVideo) {
-    bvToggle.addEventListener('click', function () {
-      if (bvVideo.paused) {
-        bvVideo.play();
-        bvToggle.classList.remove('is-paused');
-        bvToggle.setAttribute('aria-label', 'Pause background video');
-      } else {
-        bvVideo.pause();
-        bvToggle.classList.add('is-paused');
-        bvToggle.setAttribute('aria-label', 'Play background video');
-      }
-    });
-  }
+  setActive();
 
 }());
