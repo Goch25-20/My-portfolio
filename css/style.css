@@ -1810,8 +1810,7 @@ p:last-child { margin-bottom: 0; }
 ---------------------------------------------------------- */
 
 /* ----------------------------------------------------------
-   LICENCES & CERTIFICATIONS — two-column layout
-   Left: ledger list · Right: award card
+   LICENCES & CERTIFICATIONS — compact card grid + award card
 ---------------------------------------------------------- */
 .cert-section-header {
   display: flex;
@@ -1826,100 +1825,125 @@ p:last-child { margin-bottom: 0; }
   color: var(--accent);
 }
 
-/* Two-column page split */
+/* Two-column page split: cards left · award right */
 .cert-page-grid {
   display: grid;
-  grid-template-columns: 1fr 320px;
+  grid-template-columns: 1fr 300px;
   gap: var(--s5);
   align-items: start;
 }
 
-/* ---- Left column: ledger list ---- */
+/* ---- Left column: compact card grid ---- */
 .cert-col-list { min-width: 0; }
 
-.cert-list {
+.cert-cards {
   list-style: none;
   margin: 0;
   padding: 0;
-  border-top: 1px solid var(--rule);
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.85rem;
 }
 
-.cert-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--s4);
-  padding: 1.2rem 0;
-  border-bottom: 1px solid var(--rule);
-  transition: background 0.18s, padding 0.18s;
-  border-radius: 4px;
-}
-
-.cert-row:hover {
-  background: rgba(46, 68, 148, 0.04);
-  padding-left: 0.75rem;
-  padding-right: 0.75rem;
-  margin-left: -0.75rem;
-  margin-right: -0.75rem;
-}
-
-.cert-main {
+/* Individual cert card */
+.cert-card {
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  padding: 1rem 1.1rem 0.9rem;
   display: flex;
   flex-direction: column;
-  gap: 0.22rem;
-  min-width: 0;
+  gap: 0.3rem;
+  transition: box-shadow 0.18s, border-color 0.18s, transform 0.18s;
+  position: relative;
+  overflow: hidden;
 }
 
-.cert-title {
-  font-family: var(--f-body);
-  font-size: 0.93rem;
-  font-weight: 600;
-  color: var(--ink);
-  line-height: 1.4;
+.cert-card:hover {
+  border-color: var(--accent);
+  box-shadow: 0 4px 20px rgba(46, 68, 148, 0.10);
+  transform: translateY(-2px);
 }
 
-.cert-issuer {
-  font-family: var(--f-body);
-  font-size: 0.88rem;
-  font-weight: 400;
-  color: var(--ink);
-  opacity: 0.72;
-}
-
-.cert-meta {
-  font-family: var(--f-body);
-  font-size: 0.76rem;
-  color: var(--muted);
-  letter-spacing: 0.01em;
-}
-
-.cert-link {
-  flex-shrink: 0;
-  display: inline-flex;
+/* Top row: coloured dot + issuer + link icon */
+.cert-card-top {
+  display: flex;
   align-items: center;
-  gap: 0.3em;
-  font-family: var(--f-body);
-  font-size: 0.8rem;
-  font-weight: 600;
-  color: var(--accent);
-  text-decoration: none;
-  border: 1.5px solid var(--accent);
-  padding: 0.4em 0.9em;
-  border-radius: 4px;
-  white-space: nowrap;
-  transition: background 0.15s, color 0.15s;
+  gap: 0.45rem;
+  margin-bottom: 0.15rem;
 }
 
-.cert-link:hover {
+/* Colour dot — category indicator */
+.cert-card-dot {
+  display: block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.dot-blue   { background: #2E4494; }
+.dot-green  { background: #078A3C; }
+.dot-purple { background: #7B5EA7; }
+.dot-orange { background: #D4720B; }
+
+.cert-card-issuer {
+  font-family: var(--f-body);
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Icon-only external link — top-right */
+.cert-card-link {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 5px;
+  color: var(--muted);
+  text-decoration: none;
+  transition: background 0.15s, color 0.15s;
+  margin-left: auto;
+}
+
+.cert-card-link:hover {
   background: var(--accent);
   color: #fff;
   opacity: 1;
 }
 
+/* Course title */
+.cert-card-title {
+  font-family: var(--f-body);
+  font-size: 0.86rem;
+  font-weight: 600;
+  color: var(--ink);
+  line-height: 1.4;
+  margin: 0;
+  flex: 1;
+}
+
+/* Issue date — bottom */
+.cert-card-date {
+  font-family: var(--f-body);
+  font-size: 0.72rem;
+  color: var(--muted);
+  margin-top: auto;
+  padding-top: 0.5rem;
+}
+
 /* ---- Right column: award card ---- */
 .cert-col-award {
   position: sticky;
-  top: 88px;   /* clears the sticky header */
+  top: 88px;
 }
 
 .award-card {
@@ -1935,7 +1959,6 @@ p:last-child { margin-bottom: 0; }
   position: relative;
 }
 
-/* Decorative glow at top-right */
 .award-card::before {
   content: '';
   position: absolute;
@@ -1947,14 +1970,12 @@ p:last-child { margin-bottom: 0; }
   pointer-events: none;
 }
 
-/* Trophy icon */
 .award-icon {
   color: #f5c842;
   margin-bottom: 1rem;
   line-height: 1;
 }
 
-/* Placement badge */
 .award-badge {
   display: inline-block;
   font-family: var(--f-body);
@@ -1970,7 +1991,6 @@ p:last-child { margin-bottom: 0; }
   margin-bottom: 1rem;
 }
 
-/* Award title */
 .award-title {
   font-family: var(--f-display);
   font-size: 1.45rem;
@@ -1993,7 +2013,6 @@ p:last-child { margin-bottom: 0; }
   margin: 0 0 1.25rem;
 }
 
-/* Project block */
 .award-project-label {
   font-family: var(--f-body);
   font-size: 0.68rem;
@@ -2021,7 +2040,6 @@ p:last-child { margin-bottom: 0; }
   margin: 0 0 1.5rem;
 }
 
-/* Credential CTA */
 .award-credential-link {
   display: inline-flex;
   align-items: center;
@@ -2045,24 +2063,14 @@ p:last-child { margin-bottom: 0; }
   opacity: 1;
 }
 
-/* Responsive: stack on tablet and below */
-@media (max-width: 900px) {
-  .cert-page-grid {
-    grid-template-columns: 1fr;
-  }
-  .cert-col-award {
-    position: static;
-    order: -1;           /* award card floats to top on mobile */
-  }
+/* Responsive */
+@media (max-width: 960px) {
+  .cert-page-grid { grid-template-columns: 1fr; }
+  .cert-col-award { position: static; order: -1; }
 }
 
-@media (max-width: 640px) {
-  .cert-row {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.85rem;
-  }
-  .cert-link { align-self: flex-start; }
+@media (max-width: 560px) {
+  .cert-cards { grid-template-columns: 1fr; }
 }
 
 /* ----------------------------------------------------------
