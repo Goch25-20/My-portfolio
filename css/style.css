@@ -200,7 +200,7 @@ p:last-child { margin-bottom: 0; }
   width: 100%;
   overflow: hidden;
   border-radius: var(--r);
-  background: var(--rule);  /* placeholder color */
+  background: var(--rule);
   display: block;
 }
 
@@ -215,106 +215,111 @@ p:last-child { margin-bottom: 0; }
   inset: 0;
   width: 100%;
   height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  display: block;
+}
 
 /* ----------------------------------------------------------
-   POLAROID FRAME — white border, thick bottom, soft shadow,
-   gentle rotation. Apply with class="img-frame polaroid".
-   The outer .polaroid wrapper handles the white mat + shadow;
-   the inner img still fills it via absolute positioning.
+   PHOTO CARD FRAME
+   White outer card · rounded corners · soft shadow
+   Photo area with rounded corners and thin grey border
+   Caption strip below with bold title left, icon right
 ---------------------------------------------------------- */
-
-/*
-  How it works:
-  - overflow: visible so the shadow & rotation show outside
-  - background: #fff creates the white mat
-  - padding: top/sides thin, bottom thick (Polaroid signature)
-  - box-shadow: layered for depth
-  - transform: slight rotation; alternated via nth-child sibling rules
-  The inner img is absolute inside the padding box, so it fills
-  only the top photo area — NOT the thick white bottom strip.
-*/
-.img-frame.polaroid {
-  overflow: visible;            /* let shadow + rotation bleed out       */
-  background: #fff;
-  padding: 10px 10px 38px;      /* thin top/sides, thick white bottom    */
-  border-radius: 4px;
+.photo-card {
+  background: #ffffff;
+  border-radius: 16px;
   box-shadow:
-    0 2px  4px  rgba(0,0,0,0.08),
-    0 6px  18px rgba(0,0,0,0.13),
-    0 14px 36px rgba(0,0,0,0.08);
-  transform: rotate(-1.5deg);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  will-change: transform;
+    0 2px  6px  rgba(0, 0, 0, 0.06),
+    0 8px  24px rgba(0, 0, 0, 0.09),
+    0 1px  2px  rgba(0, 0, 0, 0.04);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: box-shadow 0.22s ease, transform 0.22s ease;
 }
 
-.img-frame.polaroid:hover {
-  transform: rotate(0deg) scale(1.02);
+.photo-card:hover {
+  transform: translateY(-3px);
   box-shadow:
-    0 4px  8px  rgba(0,0,0,0.10),
-    0 12px 32px rgba(0,0,0,0.18),
-    0 24px 52px rgba(0,0,0,0.10);
+    0 4px  10px rgba(0, 0, 0, 0.08),
+    0 16px 36px rgba(0, 0, 0, 0.13),
+    0 1px  3px  rgba(0, 0, 0, 0.05);
 }
 
-/* Alternate tilt direction for even siblings */
-.project:nth-child(even) .img-frame.polaroid {
-  transform: rotate(1.5deg);
-}
-.project:nth-child(even) .img-frame.polaroid:hover {
-  transform: rotate(0deg) scale(1.02);
-}
-
-/* The image itself must NOT overflow the inner photo area */
-.img-frame.polaroid {
-  /* Re-declare overflow hidden ONLY on the image clip area via
-     a pseudo-element — we keep the outer overflow:visible for
-     the shadow, but clip the photo to its own box.             */
-  clip-path: none;              /* no clip on the outer box              */
-}
-
-/* Inner image clip: use a child wrapper approach — the img
-   is absolutely positioned and we restrict it with inset to
-   stay inside the padding area, not spill into the white mat. */
-.img-frame.polaroid > img {
-  inset: 0;                     /* stays at top of padding box           */
-  border-radius: 2px;
-  /* The padding box is the photo area — img fills it exactly  */
-}
-
-/* Because overflow:visible is set, we need a pseudo-element
-   to clip the photo so it doesn't paint over the white mat.
-   We re-add overflow:hidden only at the image crop level via
-   a containing div approach — handled in HTML with .polaroid-photo */
-.polaroid-photo {
+/* Inner photo area — rounded corners + thin grey border */
+.photo-card__img-wrap {
   position: relative;
   width: 100%;
+  padding-bottom: 62%;          /* 16:10 — slightly taller than 16:9 */
   overflow: hidden;
-  border-radius: 2px;
-  /* aspect ratio driven by padding-bottom on this element     */
+  border-radius: 12px 12px 0 0; /* top corners only */
+  border: 1.5px solid #E8E8E8;
+  border-bottom: none;
+  background: var(--rule);
 }
 
-.polaroid-photo > img {
+.photo-card__img-wrap img {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center center;
   display: block;
 }
 
-/* On dark hero background, keep the portrait polaroid readable */
-.dark-ph.polaroid {
-  background: #fff;
+/* Portrait variant — taller aspect ratio */
+.photo-card__img-wrap--portrait {
+  padding-bottom: 115%;
+  border-radius: 12px 12px 0 0;
 }
 
-/* Reduce tilt on mobile so nothing clips off-screen */
-@media (max-width: 600px) {
-  .img-frame.polaroid       { transform: rotate(-0.8deg); padding-bottom: 28px; }
-  .img-frame.polaroid:hover { transform: rotate(0deg) scale(1.01); }
-  .project:nth-child(even) .img-frame.polaroid       { transform: rotate(0.8deg); }
-  .project:nth-child(even) .img-frame.polaroid:hover { transform: rotate(0deg) scale(1.01); }
+/* Caption strip — light grey, title left · icon right */
+.photo-card__caption {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  background: #F4F4F5;
+  border-top: 1.5px solid #E8E8E8;
+  min-height: 48px;
 }
-  object-fit: cover;
-  object-position: center center;
+
+.photo-card__caption-title {
+  font-family: var(--f-body);
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--ink);
+  letter-spacing: 0.01em;
+  line-height: 1.3;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.photo-card__caption-logo {
+  flex-shrink: 0;
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  opacity: 0.75;
+}
+
+/* Portrait card — sits inside the dark hero-detail section */
+.photo-card--portrait {
+  max-width: 100%;
+}
+
+/* Responsive */
+@media (max-width: 960px) {
+  .photo-card--portrait {
+    max-width: 420px;
+    margin: 0 auto;
+  }
+}
+
   display: block;
 }
 
@@ -754,17 +759,6 @@ p:last-child { margin-bottom: 0; }
 /* Portrait column — flush to section bottom */
 .hero-portrait { align-self: end; }
 
-.hero-portrait .img-frame {
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
-  padding-bottom: 0;   /* polaroid-photo inner div drives aspect ratio */
-}
-
-/* Remove the old gradient fade — polaroid frame replaces it */
-.hero-portrait .img-frame::after { display: none; }
-
-/* Remove the old cobalt left accent line — polaroid replaces it */
-.hero-portrait .img-frame::before { display: none; }
 
 /* Banner — YouTube embed */
 .hero-banner {
@@ -1649,13 +1643,8 @@ p:last-child { margin-bottom: 0; }
   .hero-portrait {
     max-width: 420px;
   }
-  /* Restore border radius when stacked vertically — polaroid handles its own */
-  .hero-portrait .img-frame {
-    border-radius: 4px;
-  }
-  .hero-portrait .img-frame::after {
-    display: none;
-  }
+  /* Restore border radius when stacked vertically — photo-card handles its own */
+  .hero-portrait { max-width: 420px; }
 
   /* Impact */
   .impact-grid { grid-template-columns: repeat(2, 1fr); }
@@ -1837,31 +1826,11 @@ p:last-child { margin-bottom: 0; }
 }
 
 /* ----------------------------------------------------------
-   PHOTO FIT FIX — polaroid frames use inner .polaroid-photo
-   for aspect ratio; the outer .img-frame is auto height.
+   PROJECT PHOTO — sizing for the photo-card inside a project row
 ---------------------------------------------------------- */
-
-/* The project-photo column must not shrink to zero */
 .project-photo {
   min-width: 0;
   align-self: center;
-}
-
-/* Polaroid outer frame: let height be driven by inner content */
-.project-photo .img-frame.polaroid {
-  height: auto;
-  padding-bottom: 0;    /* inner .polaroid-photo handles aspect ratio */
-}
-
-/* The direct child img rule no longer applies — .polaroid-photo > img handles it */
-.project-photo .img-frame > img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center center;
-  display: block;
 }
 
 /* ----------------------------------------------------------
