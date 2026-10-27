@@ -335,48 +335,60 @@ p:last-child { margin-bottom: 0; }
     0 4px  12px rgba(0, 0, 0, 0.25),
     0 20px 48px rgba(0, 0, 0, 0.30),
     0  1px  3px rgba(0, 0, 0, 0.15);
-  /* Cobalt left accent — 4px stripe */
   border-left: 4px solid var(--accent);
 }
 
-/* The image — natural height, no padding-bottom trick */
+/*
+  Image container uses aspect-ratio so the browser gives it
+  both an explicit width AND height — the only way object-fit:cover
+  actually works and stays sharp with zero upscaling.
+  4:5 ratio (80%) shows face + suit perfectly on a 2880x3600 source.
+*/
 .portrait-card__img {
-  display: block;
+  position: relative;
   width: 100%;
-  line-height: 0;   /* removes inline-block gap */
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  display: block;
+  /* NO filter, NO blur, NO transform */
 }
 
 .portrait-card__img img {
-  display: block;
+  position: absolute;
+  inset: 0;
   width: 100%;
-  height: auto;           /* natural proportions — zero upscale blur     */
-  max-height: 580px;      /* cap so it doesn't tower on wide screens     */
+  height: 100%;
   object-fit: cover;
-  object-position: center 15%; /* keep face in frame when capped         */
-  border-radius: 0;
-  image-rendering: -webkit-optimize-contrast; /* sharpen on webkit        */
+  object-position: center 18%; /* show face, not ceiling */
+  display: block;
+  /* Zero blur, zero filter */
+  filter: none;
+  transform: none;
+  /* Tell the browser this is high-DPI worthy */
+  image-rendering: auto;
 }
 
-/* Subtle gradient at the bottom so badge is legible */
+/* Dark gradient overlay — ONLY at the bottom, behind the badge.
+   Lives on the container (position:relative) as ::after so it
+   sits above the img without any blur touching the photo.      */
 .portrait-card__img::after {
   content: '';
   position: absolute;
   inset: 0;
   background: linear-gradient(
     to top,
-    rgba(13, 13, 43, 0.82) 0%,
-    rgba(13, 13, 43, 0.20) 40%,
-    transparent 65%
+    rgba(13, 13, 43, 0.88) 0%,
+    rgba(13, 13, 43, 0.50) 22%,
+    rgba(13, 13, 43, 0.00) 50%
   );
   pointer-events: none;
+  z-index: 1;
 }
 
-/* Cobalt accent line — left edge visual */
-.portrait-card__accent {
-  display: none; /* handled by border-left on .portrait-card */
-}
+/* Cobalt accent — handled by border-left on .portrait-card */
+.portrait-card__accent { display: none; }
 
-/* Floating name badge — pinned to bottom of card */
+/* Floating name badge — pinned to bottom, above the gradient */
 .portrait-card__badge {
   position: absolute;
   bottom: 0;
@@ -407,14 +419,12 @@ p:last-child { margin-bottom: 0; }
   color: var(--accent-sky);
 }
 
-/* Responsive */
+/* Responsive — no max-height caps, aspect-ratio handles it */
 @media (max-width: 960px) {
   .hero-portrait { max-width: 420px; margin: 0 auto; }
-  .portrait-card__img img { max-height: 460px; }
 }
 
 @media (max-width: 600px) {
-  .portrait-card__img img { max-height: 380px; }
   .portrait-card__badge { padding: 1rem; }
   .portrait-card__badge-name { font-size: 1.05rem; }
 }
