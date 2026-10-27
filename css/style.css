@@ -215,6 +215,104 @@ p:last-child { margin-bottom: 0; }
   inset: 0;
   width: 100%;
   height: 100%;
+
+/* ----------------------------------------------------------
+   POLAROID FRAME — white border, thick bottom, soft shadow,
+   gentle rotation. Apply with class="img-frame polaroid".
+   The outer .polaroid wrapper handles the white mat + shadow;
+   the inner img still fills it via absolute positioning.
+---------------------------------------------------------- */
+
+/*
+  How it works:
+  - overflow: visible so the shadow & rotation show outside
+  - background: #fff creates the white mat
+  - padding: top/sides thin, bottom thick (Polaroid signature)
+  - box-shadow: layered for depth
+  - transform: slight rotation; alternated via nth-child sibling rules
+  The inner img is absolute inside the padding box, so it fills
+  only the top photo area — NOT the thick white bottom strip.
+*/
+.img-frame.polaroid {
+  overflow: visible;            /* let shadow + rotation bleed out       */
+  background: #fff;
+  padding: 10px 10px 38px;      /* thin top/sides, thick white bottom    */
+  border-radius: 4px;
+  box-shadow:
+    0 2px  4px  rgba(0,0,0,0.08),
+    0 6px  18px rgba(0,0,0,0.13),
+    0 14px 36px rgba(0,0,0,0.08);
+  transform: rotate(-1.5deg);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  will-change: transform;
+}
+
+.img-frame.polaroid:hover {
+  transform: rotate(0deg) scale(1.02);
+  box-shadow:
+    0 4px  8px  rgba(0,0,0,0.10),
+    0 12px 32px rgba(0,0,0,0.18),
+    0 24px 52px rgba(0,0,0,0.10);
+}
+
+/* Alternate tilt direction for even siblings */
+.project:nth-child(even) .img-frame.polaroid {
+  transform: rotate(1.5deg);
+}
+.project:nth-child(even) .img-frame.polaroid:hover {
+  transform: rotate(0deg) scale(1.02);
+}
+
+/* The image itself must NOT overflow the inner photo area */
+.img-frame.polaroid {
+  /* Re-declare overflow hidden ONLY on the image clip area via
+     a pseudo-element — we keep the outer overflow:visible for
+     the shadow, but clip the photo to its own box.             */
+  clip-path: none;              /* no clip on the outer box              */
+}
+
+/* Inner image clip: use a child wrapper approach — the img
+   is absolutely positioned and we restrict it with inset to
+   stay inside the padding area, not spill into the white mat. */
+.img-frame.polaroid > img {
+  inset: 0;                     /* stays at top of padding box           */
+  border-radius: 2px;
+  /* The padding box is the photo area — img fills it exactly  */
+}
+
+/* Because overflow:visible is set, we need a pseudo-element
+   to clip the photo so it doesn't paint over the white mat.
+   We re-add overflow:hidden only at the image crop level via
+   a containing div approach — handled in HTML with .polaroid-photo */
+.polaroid-photo {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 2px;
+  /* aspect ratio driven by padding-bottom on this element     */
+}
+
+.polaroid-photo > img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* On dark hero background, keep the portrait polaroid readable */
+.dark-ph.polaroid {
+  background: #fff;
+}
+
+/* Reduce tilt on mobile so nothing clips off-screen */
+@media (max-width: 600px) {
+  .img-frame.polaroid       { transform: rotate(-0.8deg); padding-bottom: 28px; }
+  .img-frame.polaroid:hover { transform: rotate(0deg) scale(1.01); }
+  .project:nth-child(even) .img-frame.polaroid       { transform: rotate(0.8deg); }
+  .project:nth-child(even) .img-frame.polaroid:hover { transform: rotate(0deg) scale(1.01); }
+}
   object-fit: cover;
   object-position: center center;
   display: block;
@@ -659,31 +757,14 @@ p:last-child { margin-bottom: 0; }
 .hero-portrait .img-frame {
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
-  padding-bottom: 125%;
+  padding-bottom: 0;   /* polaroid-photo inner div drives aspect ratio */
 }
 
-.hero-portrait .img-frame::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 30%;
-  background: linear-gradient(to top, var(--dark-bg) 0%, transparent 100%);
-  pointer-events: none;
-  z-index: 1;
-}
+/* Remove the old gradient fade — polaroid frame replaces it */
+.hero-portrait .img-frame::after { display: none; }
 
-.hero-portrait .img-frame::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 3px;
-  height: 100%;
-  background: var(--accent);
-  z-index: 2;
-}
+/* Remove the old cobalt left accent line — polaroid replaces it */
+.hero-portrait .img-frame::before { display: none; }
 
 /* Banner — YouTube embed */
 .hero-banner {
@@ -1568,12 +1649,12 @@ p:last-child { margin-bottom: 0; }
   .hero-portrait {
     max-width: 420px;
   }
-  /* Restore bottom radius when stacked vertically */
+  /* Restore border radius when stacked vertically — polaroid handles its own */
   .hero-portrait .img-frame {
-    border-radius: var(--r);
+    border-radius: 4px;
   }
   .hero-portrait .img-frame::after {
-    display: none; /* no fade needed when stacked */
+    display: none;
   }
 
   /* Impact */
@@ -1756,26 +1837,23 @@ p:last-child { margin-bottom: 0; }
 }
 
 /* ----------------------------------------------------------
-   PHOTO FIT FIX — ensure .r-16-9 frames always show the image
-   The key issue: without an explicit height on the parent
-   wrapper the padding-bottom trick can collapse in some
-   contexts. Belt-and-braces rules below make it bulletproof.
+   PHOTO FIT FIX — polaroid frames use inner .polaroid-photo
+   for aspect ratio; the outer .img-frame is auto height.
 ---------------------------------------------------------- */
 
 /* The project-photo column must not shrink to zero */
 .project-photo {
   min-width: 0;
-  align-self: center;   /* vertically centre photo next to text */
+  align-self: center;
 }
 
-/* Ensure the frame itself is never given an external height
-   that overrides its own padding-bottom ratio */
-.project-photo .img-frame {
-  height: 0;            /* explicit 0 so padding-bottom drives height */
-  /* padding-bottom from .r-16-9 = 56.25% takes over from here */
+/* Polaroid outer frame: let height be driven by inner content */
+.project-photo .img-frame.polaroid {
+  height: auto;
+  padding-bottom: 0;    /* inner .polaroid-photo handles aspect ratio */
 }
 
-/* Make absolutely sure the img inside fills correctly */
+/* The direct child img rule no longer applies — .polaroid-photo > img handles it */
 .project-photo .img-frame > img {
   position: absolute;
   inset: 0;
