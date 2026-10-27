@@ -338,54 +338,45 @@ p:last-child { margin-bottom: 0; }
   border-left: 4px solid var(--accent);
 }
 
-/*
-  padding-bottom trick: sets height as % of width.
-  125% = 4:5 portrait ratio (width × 1.25 = height).
-  The img is absolute inside, so it fills the box exactly —
-  object-fit: cover crops without stretching.
-*/
+/* Image wrapper: explicit height so the card is never zero */
 .portrait-card__img {
-  position: relative;
-  width: 100%;
-  padding-bottom: 125%;   /* 4:5 — matches 2880×3600 source */
-  overflow: hidden;
   display: block;
+  width: 100%;
+  height: 560px;            /* explicit px — no collapse possible */
+  overflow: hidden;
+  position: relative;
 }
 
+/* Image fills the wrapper, cropped to show face */
 .portrait-card__img img {
-  position: absolute;
-  top: 0;
-  left: 0;
+  display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: center 18%;
-  display: block;
   filter: none;
   transform: none;
 }
 
-/* Dark gradient overlay — ONLY at the bottom, behind the badge.
-   Lives on the container (position:relative) as ::after so it
-   sits above the img without any blur touching the photo.      */
+/* Gradient — only at the bottom, behind the name badge */
 .portrait-card__img::after {
   content: '';
   position: absolute;
-  inset: 0;
+  left: 0; right: 0; bottom: 0;
+  height: 55%;
   background: linear-gradient(
     to top,
-    rgba(13, 13, 43, 0.88) 0%,
-    rgba(13, 13, 43, 0.50) 22%,
-    rgba(13, 13, 43, 0.00) 50%
+    rgba(13, 13, 43, 0.90) 0%,
+    rgba(13, 13, 43, 0.55) 35%,
+    rgba(13, 13, 43, 0.00) 100%
   );
   pointer-events: none;
   z-index: 1;
 }
 
-/* Cobalt accent — handled by border-left on .portrait-card */
 .portrait-card__accent { display: none; }
 
-/* Floating name badge — pinned to bottom, above the gradient */
+/* Name badge — floated over the gradient */
 .portrait-card__badge {
   position: absolute;
   bottom: 0;
@@ -416,12 +407,13 @@ p:last-child { margin-bottom: 0; }
   color: var(--accent-sky);
 }
 
-/* Responsive — no max-height caps, aspect-ratio handles it */
 @media (max-width: 960px) {
   .hero-portrait { max-width: 420px; margin: 0 auto; }
+  .portrait-card__img { height: 460px; }
 }
 
 @media (max-width: 600px) {
+  .portrait-card__img { height: 380px; }
   .portrait-card__badge { padding: 1rem; }
   .portrait-card__badge-name { font-size: 1.05rem; }
 }
