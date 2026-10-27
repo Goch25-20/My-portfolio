@@ -310,14 +310,15 @@ p:last-child { margin-bottom: 0; }
 .portrait-card {
   position: relative;
   width: 100%;
-  border-radius: 16px;
+  /* Grey frame around the card */
+  border: 2px solid #d0d0d0;
+  border-radius: 20px;
   overflow: hidden;
   background: #0a0a1a;
   box-shadow:
     0 4px  12px rgba(0, 0, 0, 0.25),
     0 20px 48px rgba(0, 0, 0, 0.30),
     0  1px  3px rgba(0, 0, 0, 0.15);
-  border-left: 4px solid var(--accent);
 }
 
 /* Wrapper: fixed height drives the crop zone */
@@ -327,6 +328,7 @@ p:last-child { margin-bottom: 0; }
   height: 580px;
   overflow: hidden;
   position: relative;
+  border-radius: 18px 18px 0 0; /* curves top corners of the photo */
 }
 
 /* The image — absolutely fills wrapper so object-fit:cover
