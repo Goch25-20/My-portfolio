@@ -269,12 +269,6 @@ p:last-child { margin-bottom: 0; }
   display: block;
 }
 
-/* Portrait variant — taller aspect ratio */
-.photo-card__img-wrap--portrait {
-  padding-bottom: 115%;
-  border-radius: 12px 12px 0 0;
-}
-
 /* Caption strip — light grey, title left · icon right */
 .photo-card__caption {
   display: flex;
@@ -307,23 +301,11 @@ p:last-child { margin-bottom: 0; }
   opacity: 0.75;
 }
 
-/* Portrait card — sits inside the dark hero-detail section */
-.photo-card--portrait {
-  max-width: 100%;
-}
-
-/* Responsive */
-@media (max-width: 960px) {
-  .photo-card--portrait {
-    max-width: 420px;
-    margin: 0 auto;
-  }
-}
-
 /* ----------------------------------------------------------
-   PORTRAIT CARD — editorial full-bleed portrait treatment
-   Sharp, no aspect-ratio padding hacks, crisp at all sizes.
-   Cobalt accent bar · real image height · floating name badge
+   PORTRAIT CARD
+   Explicit pixel heights on every breakpoint — no collapse.
+   object-fit: cover on a block img (no position:absolute needed).
+   Zero filter. Zero blur. Gradient only at bottom.
 ---------------------------------------------------------- */
 .portrait-card {
   position: relative;
@@ -338,27 +320,28 @@ p:last-child { margin-bottom: 0; }
   border-left: 4px solid var(--accent);
 }
 
-/* Image wrapper: explicit height so the card is never zero */
+/* Wrapper: fixed height drives the crop zone */
 .portrait-card__img {
   display: block;
   width: 100%;
-  height: 560px;            /* explicit px — no collapse possible */
+  height: 580px;
   overflow: hidden;
   position: relative;
 }
 
-/* Image fills the wrapper, cropped to show face */
+/* The image — block, fills wrapper, cropped, zero processing */
 .portrait-card__img img {
   display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 18%;
+  object-position: center 12%;
   filter: none;
   transform: none;
+  will-change: auto;
 }
 
-/* Gradient — only at the bottom, behind the name badge */
+/* Gradient — bottom only, behind the name badge */
 .portrait-card__img::after {
   content: '';
   position: absolute;
@@ -366,9 +349,9 @@ p:last-child { margin-bottom: 0; }
   height: 55%;
   background: linear-gradient(
     to top,
-    rgba(13, 13, 43, 0.90) 0%,
+    rgba(13, 13, 43, 0.92) 0%,
     rgba(13, 13, 43, 0.55) 35%,
-    rgba(13, 13, 43, 0.00) 100%
+    transparent           100%
   );
   pointer-events: none;
   z-index: 1;
@@ -376,7 +359,7 @@ p:last-child { margin-bottom: 0; }
 
 .portrait-card__accent { display: none; }
 
-/* Name badge — floated over the gradient */
+/* Name badge over the gradient */
 .portrait-card__badge {
   position: absolute;
   bottom: 0;
@@ -408,12 +391,11 @@ p:last-child { margin-bottom: 0; }
 }
 
 @media (max-width: 960px) {
-  .hero-portrait { max-width: 420px; margin: 0 auto; }
-  .portrait-card__img { height: 460px; }
+  .portrait-card__img { height: 480px; }
 }
 
 @media (max-width: 600px) {
-  .portrait-card__img { height: 340px; }
+  .portrait-card__img { height: 360px; }
   .portrait-card__badge { padding: 1rem; }
   .portrait-card__badge-name { font-size: 1.05rem; }
 }
