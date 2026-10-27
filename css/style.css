@@ -320,6 +320,105 @@ p:last-child { margin-bottom: 0; }
   }
 }
 
+/* ----------------------------------------------------------
+   PORTRAIT CARD — editorial full-bleed portrait treatment
+   Sharp, no aspect-ratio padding hacks, crisp at all sizes.
+   Cobalt accent bar · real image height · floating name badge
+---------------------------------------------------------- */
+.portrait-card {
+  position: relative;
+  width: 100%;
+  border-radius: 16px;
+  overflow: hidden;
+  background: var(--dark-surf);
+  box-shadow:
+    0 4px  12px rgba(0, 0, 0, 0.25),
+    0 20px 48px rgba(0, 0, 0, 0.30),
+    0  1px  3px rgba(0, 0, 0, 0.15);
+  /* Cobalt left accent — 4px stripe */
+  border-left: 4px solid var(--accent);
+}
+
+/* The image — natural height, no padding-bottom trick */
+.portrait-card__img {
+  display: block;
+  width: 100%;
+  line-height: 0;   /* removes inline-block gap */
+}
+
+.portrait-card__img img {
+  display: block;
+  width: 100%;
+  height: auto;           /* natural proportions — zero upscale blur     */
+  max-height: 580px;      /* cap so it doesn't tower on wide screens     */
+  object-fit: cover;
+  object-position: center 15%; /* keep face in frame when capped         */
+  border-radius: 0;
+  image-rendering: -webkit-optimize-contrast; /* sharpen on webkit        */
+}
+
+/* Subtle gradient at the bottom so badge is legible */
+.portrait-card__img::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(13, 13, 43, 0.82) 0%,
+    rgba(13, 13, 43, 0.20) 40%,
+    transparent 65%
+  );
+  pointer-events: none;
+}
+
+/* Cobalt accent line — left edge visual */
+.portrait-card__accent {
+  display: none; /* handled by border-left on .portrait-card */
+}
+
+/* Floating name badge — pinned to bottom of card */
+.portrait-card__badge {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1.4rem 1.4rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  z-index: 2;
+}
+
+.portrait-card__badge-name {
+  font-family: var(--f-display);
+  font-size: clamp(1.1rem, 2.2vw, 1.4rem);
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+.portrait-card__badge-role {
+  font-family: var(--f-body);
+  font-size: 0.76rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent-sky);
+}
+
+/* Responsive */
+@media (max-width: 960px) {
+  .hero-portrait { max-width: 420px; margin: 0 auto; }
+  .portrait-card__img img { max-height: 460px; }
+}
+
+@media (max-width: 600px) {
+  .portrait-card__img img { max-height: 380px; }
+  .portrait-card__badge { padding: 1rem; }
+  .portrait-card__badge-name { font-size: 1.05rem; }
+}
+
   display: block;
 }
 
@@ -1640,10 +1739,6 @@ p:last-child { margin-bottom: 0; }
     gap: var(--s5);
   }
   .hero-text { padding-bottom: 0; }
-  .hero-portrait {
-    max-width: 420px;
-  }
-  /* Restore border radius when stacked vertically — photo-card handles its own */
   .hero-portrait { max-width: 420px; }
 
   /* Impact */
