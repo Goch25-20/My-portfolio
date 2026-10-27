@@ -339,33 +339,30 @@ p:last-child { margin-bottom: 0; }
 }
 
 /*
-  Image container uses aspect-ratio so the browser gives it
-  both an explicit width AND height — the only way object-fit:cover
-  actually works and stays sharp with zero upscaling.
-  4:5 ratio (80%) shows face + suit perfectly on a 2880x3600 source.
+  padding-bottom trick: sets height as % of width.
+  125% = 4:5 portrait ratio (width × 1.25 = height).
+  The img is absolute inside, so it fills the box exactly —
+  object-fit: cover crops without stretching.
 */
 .portrait-card__img {
   position: relative;
   width: 100%;
-  aspect-ratio: 4 / 5;
+  padding-bottom: 125%;   /* 4:5 — matches 2880×3600 source */
   overflow: hidden;
   display: block;
-  /* NO filter, NO blur, NO transform */
 }
 
 .portrait-card__img img {
   position: absolute;
-  inset: 0;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 18%; /* show face, not ceiling */
+  object-position: center 18%;
   display: block;
-  /* Zero blur, zero filter */
   filter: none;
   transform: none;
-  /* Tell the browser this is high-DPI worthy */
-  image-rendering: auto;
 }
 
 /* Dark gradient overlay — ONLY at the bottom, behind the badge.
