@@ -301,111 +301,6 @@ p:last-child { margin-bottom: 0; }
   opacity: 0.75;
 }
 
-/* ----------------------------------------------------------
-   PORTRAIT CARD
-   Explicit pixel heights on every breakpoint — no collapse.
-   object-fit: cover on a block img (no position:absolute needed).
-   Zero filter. Zero blur. Gradient only at bottom.
----------------------------------------------------------- */
-.portrait-card {
-  position: relative;
-  width: 100%;
-  border: none;
-  border-radius: 0;
-  overflow: hidden;
-  background: #0a0a1a;
-  box-shadow: none;
-}
-
-/* Wrapper: fixed height drives the crop zone */
-.portrait-card__img {
-  display: block;
-  width: 100%;
-  height: 580px;
-  overflow: hidden;
-  position: relative;
-  border-radius: 0;
-}
-
-/* The image — absolutely fills wrapper so object-fit:cover
-   uses the full compositing pipeline — sharpest possible render */
-.portrait-card__img img {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center 12%;
-  display: block;
-  filter: contrast(1.08) brightness(1.04);
-  transform: none;
-  image-rendering: -webkit-optimize-contrast;
-  image-rendering: auto;
-}
-
-/* Gradient — bottom only, behind the name badge */
-.portrait-card__img::after {
-  content: '';
-  position: absolute;
-  left: 0; right: 0; bottom: 0;
-  height: 55%;
-  background: linear-gradient(
-    to top,
-    rgba(13, 13, 43, 0.96) 0%,
-    rgba(13, 13, 43, 0.65) 30%,
-    rgba(13, 13, 43, 0.10) 65%,
-    transparent            100%
-  );
-  pointer-events: none;
-  z-index: 1;
-}
-
-.portrait-card__accent { display: none; }
-
-/* Name badge over the gradient */
-.portrait-card__badge {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 1.4rem 1.4rem 1.25rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.2rem;
-  z-index: 2;
-}
-
-.portrait-card__badge-name {
-  font-family: var(--f-display);
-  font-size: clamp(1.1rem, 2.2vw, 1.4rem);
-  font-weight: 700;
-  color: #fff;
-  line-height: 1.2;
-  letter-spacing: -0.01em;
-}
-
-.portrait-card__badge-role {
-  font-family: var(--f-body);
-  font-size: 0.76rem;
-  font-weight: 500;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--accent-sky);
-}
-
-@media (max-width: 960px) {
-  .portrait-card__img { height: 480px; }
-}
-
-@media (max-width: 600px) {
-  .portrait-card__img { height: 360px; }
-  .portrait-card__badge { padding: 1rem; }
-  .portrait-card__badge-name { font-size: 1.05rem; }
-}
-
-  display: block;
-}
 
 /* Portrait: face is centred horizontally, body in lower 2/3.
    Push crop down to show face + suit, not the empty ceiling. */
@@ -843,8 +738,34 @@ p:last-child { margin-bottom: 0; }
 /* Portrait column — flush to section bottom */
 .hero-portrait { align-self: end; }
 
+.hero-portrait .img-frame {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  padding-bottom: 125%;
+}
 
-/* Banner — YouTube embed */
+.hero-portrait .img-frame::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 30%;
+  background: linear-gradient(to top, var(--dark-bg) 0%, transparent 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.hero-portrait .img-frame::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 3px;
+  height: 100%;
+  background: var(--accent);
+  z-index: 2;
+}/* Banner — YouTube embed */
 .hero-banner {
   padding-top: var(--s4);
   padding-bottom: var(--s6);
@@ -1728,9 +1649,15 @@ p:last-child { margin-bottom: 0; }
     width: 100%;
     max-width: 480px;
     margin: 0 auto;
-    order: -1;        /* portrait above text on mobile */
-    align-self: auto; /* stop it collapsing with align-self:end */
+    order: -1;
+    align-self: auto;
   }
+  /* Restore bottom radius when stacked */
+  .hero-portrait .img-frame {
+    border-radius: var(--r);
+    padding-bottom: 125%;
+  }
+  .hero-portrait .img-frame::after { display: none; }
 
   /* Impact */
   .impact-grid { grid-template-columns: repeat(2, 1fr); }

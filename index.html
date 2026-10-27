@@ -173,27 +173,11 @@
 
         <!-- Right: portrait -->
         <div class="hero-portrait">
-          <div class="portrait-card">
-            <!-- Accent bar — cobalt left edge -->
-            <div class="portrait-card__accent" aria-hidden="true"></div>
-
-            <!-- The photo — aspect-ratio container, object-fit cover, zero blur -->
-            <div class="portrait-card__img">
-              <img src="images/portrait.JPG"
-                   srcset="images/portrait.JPG 2880w"
-                   sizes="(max-width: 600px) 100vw,
-                          (max-width: 960px) 420px,
-                          480px"
-                   alt="Goch Thiong Garang Akot"
-                   loading="eager"
-                   fetchpriority="high" />
-            </div>
-
-            <!-- Floating badge — bottom of the card -->
-            <div class="portrait-card__badge">
-              <span class="portrait-card__badge-name">Goch Thiong Garang Akot</span>
-              <span class="portrait-card__badge-role">Entrepreneurial Leader · ALU Kigali</span>
-            </div>
+          <div class="img-frame portrait-frame dark-ph">
+            <img src="images/portrait.JPG"
+                 alt="Goch Thiong Garang Akot speaking at a podium in a blue suit"
+                 loading="eager"
+                 onerror="this.parentElement.classList.add('missing')" />
           </div>
         </div>
 
