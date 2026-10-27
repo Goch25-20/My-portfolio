@@ -413,7 +413,7 @@ p:last-child { margin-bottom: 0; }
 }
 
 @media (max-width: 600px) {
-  .portrait-card__img { height: 380px; }
+  .portrait-card__img { height: 340px; }
   .portrait-card__badge { padding: 1rem; }
   .portrait-card__badge-name { font-size: 1.05rem; }
 }
@@ -1738,7 +1738,13 @@ p:last-child { margin-bottom: 0; }
     gap: var(--s5);
   }
   .hero-text { padding-bottom: 0; }
-  .hero-portrait { max-width: 420px; }
+  .hero-portrait {
+    width: 100%;
+    max-width: 480px;
+    margin: 0 auto;
+    order: -1;        /* portrait above text on mobile */
+    align-self: auto; /* stop it collapsing with align-self:end */
+  }
 
   /* Impact */
   .impact-grid { grid-template-columns: repeat(2, 1fr); }
@@ -1808,7 +1814,11 @@ p:last-child { margin-bottom: 0; }
 
   /* Hero */
   .hero-name { font-size: 2.6rem; }
-  .hero-portrait { max-width: 100%; }
+  .hero-portrait {
+    max-width: 100%;
+    order: -1;
+    align-self: auto;
+  }
 
   /* Impact */
   .impact-grid { grid-template-columns: 1fr 1fr; }
