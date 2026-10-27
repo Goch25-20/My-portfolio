@@ -180,6 +180,10 @@
             <!-- The photo — aspect-ratio container, object-fit cover, zero blur -->
             <div class="portrait-card__img">
               <img src="images/portrait.JPG"
+                   srcset="images/portrait.JPG 2880w"
+                   sizes="(max-width: 600px) 100vw,
+                          (max-width: 960px) 420px,
+                          480px"
                    alt="Goch Thiong Garang Akot"
                    loading="eager"
                    fetchpriority="high" />
