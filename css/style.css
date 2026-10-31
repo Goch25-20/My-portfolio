@@ -1051,7 +1051,15 @@ p:last-child { margin-bottom: 0; }
 }
 
 .journey-prose .section-heading { margin-bottom: var(--s2); }
-.journey-prose .section-intro-line { margin-bottom: var(--s4); font-style: italic; }
+.journey-prose .section-heading { margin-bottom: var(--s1); }
+.journey-subtitle {
+  font-family: var(--f-display);
+  font-size: clamp(1.1rem, 2vw, 1.35rem);
+  font-weight: 600;
+  font-style: italic;
+  color: var(--accent);
+  margin-bottom: var(--s3);
+}
 .journey-prose p {
   font-size: 0.97rem;
   color: var(--muted);
