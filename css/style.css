@@ -1051,12 +1051,19 @@ p:last-child { margin-bottom: 0; }
 }
 
 .journey-prose .section-heading { margin-bottom: var(--s2); }
-.journey-prose .section-intro-line { margin-bottom: var(--s4); }
+.journey-prose .section-intro-line { margin-bottom: var(--s4); font-style: italic; }
 .journey-prose p {
   font-size: 0.97rem;
   color: var(--muted);
   line-height: 1.8;
   margin-bottom: var(--s3);
+}
+.journey-closing {
+  font-size: 1rem;
+  color: var(--ink);
+  border-left: 3px solid var(--accent);
+  padding-left: var(--s2);
+  margin-block: var(--s3);
 }
 
 /* Vertical timeline */
